@@ -2,7 +2,7 @@
     "name": "Netflix subtitles styler",
     "version": "1.0",
     "description": "Netflix subtitles styler",
-    "authors": "jsm-txt", "Sophie",
+    "authors": "jsm-txt sophie",
     "homepage_url": "https://github.com/gaja-project/gaja",
     "permissions": ["tabs", "storage", "declarativeContent", "https://*.netflix.com/"],
     "background": {
