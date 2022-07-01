@@ -1,8 +1,8 @@
 chrome.runtime.onMessage.addListener((message, _sender, _sendResponse) => {
-    changeSubtitleStyle(message.vPos, message.fSize, message.fColor);
+    changeSubtitleStyle(message.vSubtitle, message.vDefinition, message.small, message.medium, message.large);
 }) 
 
-changeSubtitleStyle = (vPos, fSize, fColor) => {
+changeSubtitleStyle = (vSubtitle, vDefinition, small, medium, large) => {
     // logging that our function works
     console.log("%cnetflix-subtitles-styler: obsvr working")
 
@@ -20,14 +20,14 @@ changeSubtitleStyle = (vPos, fSize, fColor) => {
         // 
 
     callback = () => {
-        // grabs subtitle data from nextflix
-        const subtitles = document.querySelector(".player-timedtext");
+    //     // grabs subtitle data from nextflix
+    //     const subtitles = document.querySelector(".player-timedtext");
         
-        // styles the location of subtitles
-        if (subtitles) {
-            subtitles.style.bottom = vPos + "px";
-        }
-        console.log(subtitles.data);
+    //     // styles the location of subtitles
+    //     if (subtitles) {
+    //         subtitles.style.bottom = vPos + "px";
+    //     }
+    //     console.log(subtitles.data);
 
         const observer = new MutationObserver(callback);
         observer.observer(document.body, {
