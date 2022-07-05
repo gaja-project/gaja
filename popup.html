@@ -15,13 +15,37 @@
     <div>
         <!-- form for subtitles -->
         <form id="popup-form" class="container">
-            <div class="input-info">Vertical position from bottom [px]</div>
-            <input class="form-control" id="vPos" type="number" value="" min="0" max="5000" />
-            <div class="input-info">Font size [px]</div>
+            <!-- dual subtitle toggle button -->
+            <fieldset>
+                <label for="subtitle">Dual subtitles</label>
+                <input type="checkbox" name="subtitle" id="vSubtitle">
+            </fieldset>
+
+            <fieldset>
+                <label for="definition">Definition</label>
+                <input type="checkbox" name="definition" id="vDefinition">
+            </fieldset>
+
+            <fieldset>
+                <legend>Subtitle Size</legend>
+
+                <label for="small">Small</label>
+                <input type="radio" name="subSize" value="small" id="small">
+                
+                <label for="medium">Medium</label>
+                <input type="radio" name="subSize" value="medium" id="medium">
+                
+                <label for="large">Large</label>
+                <input type="radio" name="subSize" value="large" id="large">
+            </fieldset>
+
+            <!-- <div class="input-info">Vertical position from bottom [px]</div>
+            <input class="form-control" id="vPos" type="number" value="" min="0" max="5000" /> -->
+            <!-- <div class="input-info">Font size [px]</div>
             <input id="fSize" type="number" value="" min="0" max="300" />
             <div class="input-info">Font color [HEX]</div>
-            <input id="fColor" type="text" value="" pattern="^#[0-9A-F]{6}$" />
-            <button id="change" type="submit">Change</button>
+            <input id="fColor" type="text" value="" pattern="^#[0-9A-F]{6}$" /> -->
+            <!-- <button id="change" type="submit">Change</button> -->
         </form>
     </div>
 
