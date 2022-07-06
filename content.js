@@ -1,65 +1,31 @@
 chrome.runtime.onMessage.addListener((message, _sender, _sendResponse) => {
-    createNewSubContainer();
-    changeSubtitleStyle(message.vSubtitle, message.vDefinition, message.small, message.medium, message.large);
+    // createNewSubContainer();
+    changeSubtitle(message.vSubtitle, message.vDefinition, message.small, message.medium, message.large);
 })
 
-const observer = new MutationObserver(callback);
-    observer.observe(document.body, {
-        subtree: true,
-        attributes: false,
-        childList: true
-    });
-
-function createNewSubContainer(){
-
-    let elements = document.getElementsByTagName("*");
-
-    //idk
-    for(let id = 0; id < elements.length; ++id) {
-        elements[id].addEventListener('contextmenu',function(e){e.stopPropagation()},true);
-            elements[id].oncontextmenu = null;
-    }
-
-    //create container
-    const videoContainer = document.querySelector('.watch-video');
-    const div = document.createElement('div');
-    div.className = "my-timed-text-container"
-    videoContainer.appendChild(div);
-
-}
-
-changeSubtitleStyle = (vSubtitle, vDefinition, small, medium, large) => {
+changeSubtitle = (vSubtitle, vDefinition, small, medium, large) => {
     // logging that our function works
-    console.log("%cnetflix-subtitles-styler: obsvr working")
+    console.log("%cnetflix-subtitles: obsvr working")
 
     // getting access to the subtitles
     const textContainer = document.querySelector('.player-timedtext-text-container');
-    const textContainerSpan1 = textContainer.firstChild;
-    const textContainerSpan2 = textContainerSpan1.firstChild;
-    const subs = textContainerSpan2.innerText;``
+    // const textContainerSpan1 = textContainer.firstChild;
+    // const textContainerSpan2 = textContainerSpan1.firstChild;
+    // const subs = textContainerSpan2.innerText;``
+    
+    console.log(textContainer.innerHTML); 
+    // within the two spans that live in the textContainer, we need to access the subtitles
     
     
 
-    // to do: need to rewrite the popup.html and popup.js so that when the submit button is clicked, then the extension remains on for the entire duration ~ change the eventListener so that it continuously monitors the subs
-    // Create a function that listens to when the there is a mouseover event in the textContainerSpan2
-        // consult Yvonne to ask if we should make it a toggle button?
-        // 
-    // callback = () => {
-    //     // Grab original sub
-    //     let id = "player-timedtext";
-    //     const timedtext = document.getElementsByClassName(id)[0]
-    //     const div = document.getElementsByClassName("my-timed-text-container")
 
-    //     //appeding text not an elemtent
-    //     console.log(timedtext)
-    //     console.log(subs);
-    //     div.textContent = timedtext.container
-
-            
-    // }
-
+    // we need to make a callback that tracks all changes within the textContainer
     const callback = function(mutationsList, observer){ //Observes original text box for changes
+        
         for (const mutation of mutationsList){
+
+            console.log(mutation);
+
             if (mutation.type === 'childList' && mutation.target.className && mutation.target.className==="player-timedtext"){ //track removal/addition to subtitle container 
                 if (mutation.addedNodes.length===1){ //If added rather than removed..
                     if (mutation.target.innerText!==window.old_text){ 
@@ -116,6 +82,30 @@ changeSubtitleStyle = (vSubtitle, vDefinition, small, medium, large) => {
     };
 
     window.observer = new MutationObserver(callback);
-    window.observer.observe(timedtext,window.config);
+    window.observer.observe(textContainer, {
+        childList: true, 
+        subtree: true
+    });
 
 }
+
+
+
+
+// function createNewSubContainer(){
+
+//     let elements = document.getElementsByTagName("*");
+
+//     //idk
+//     for(let id = 0; id < elements.length; ++id) {
+//         elements[id].addEventListener('contextmenu',function(e){e.stopPropagation()},true);
+//             elements[id].oncontextmenu = null;
+//     }
+
+//     //create container
+//     const videoContainer = document.querySelector('.watch-video');
+//     const div = document.createElement('div');
+//     div.className = "my-timed-text-container"
+//     videoContainer.appendChild(div);
+
+// }
