@@ -1,16 +1,31 @@
 {
-    "name": "Netflix subtitles styler",
+    "name": "Gaja",
     "version": "1.0",
-    "description": "Netflix subtitles styler",
+    "description": "Netflix dual subtitles for language learning",
     "author": "jsm-txt sophie",
     "homepage_url": "https://github.com/gaja-project/gaja",
-    "permissions": ["tabs", "storage", "declarativeContent", "https://*.netflix.com/"],
+    "icons": {
+        "128":"icons/icon128.png",
+        "48":"icons/icon48.png", 
+        "16":"icons/icon16.png"
+    },
+    "permissions": [
+        "tabs", 
+        "storage", 
+        "declarativeContent"
+    ],
+    "host_permissions": ["https://netflix.com/*"],
     "background": {
-    "scripts": ["background.js"],
-    "persistent": false
+        "service_worker": "background.js"
     },
-    "page_action": {
-    "default_popup": "popup.html"
+    "content_scripts": [
+        {
+            "matches": ["https://www.netflix.com/*"],
+            "js":["content.js"]
+        }
+    ],
+    "action": {
+        "default_popup": "popup.html"
     },
-    "manifest_version": 2
+    "manifest_version": 3
 }

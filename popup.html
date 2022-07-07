@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,34 +10,33 @@
     <!-- insert link to css file -->
     <link rel="stylesheet" href="popup.css">
     <!-- insert link to Google fonts or other font family services -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
 </head>
+
 <body>
     <div>
         <!-- form for subtitles -->
         <form id="popup-form" class="container">
             <!-- dual subtitle toggle button -->
-            <fieldset>
+            <fieldset class="dualSubs">
                 <label for="subtitle">Dual subtitles</label>
-                <input type="checkbox" name="subtitle" id="vSubtitle">
-            </fieldset>
-
-            <fieldset>
-                <label for="definition">Definition</label>
-                <input type="checkbox" name="definition" id="vDefinition">
+                <input type="checkbox" name="subtitle" id="subtitle">
             </fieldset>
 
             <fieldset>
                 <legend>Subtitle Size</legend>
 
                 <label for="small">Small</label>
-                <input type="radio" name="subSize" value="small" id="small">
-                
+                <input type="radio" name="subSize" value="24" id="small" checked>
+
                 <label for="medium">Medium</label>
-                <input type="radio" name="subSize" value="medium" id="medium">
-                
+                <input type="radio" name="subSize" value="36" id="medium">
+
                 <label for="large">Large</label>
-                <input type="radio" name="subSize" value="large" id="large">
+                <input type="radio" name="subSize" value="48" id="large">
             </fieldset>
 
             <!-- <div class="input-info">Vertical position from bottom [px]</div>
@@ -54,4 +54,5 @@
     <script src="popup.js"></script>
 
 </body>
+
 </html>
