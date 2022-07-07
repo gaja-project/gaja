@@ -1,3 +1,65 @@
+html {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    color: #2E5984;
+    background-color: #B8D5D8;
+}
+
 form {
-    width: 200px;
+    width: 250px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    background-color: whitesmoke;
+}
+
+fieldset {
+    border: none;
+}
+
+/* Jose:
+- style the form element and its children
+- colouring and font
+*/
+
+
+
+
+
+
+/* sophie: 
+- style to toggle button/checkbox and transitions
+*/
+.dualSubs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+input[type=checkbox] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 0.8px solid #667080;
+    border-radius: 40px;
+    width: 40px;
+    height: 20px;
+    background-color: gainsboro;
+}
+
+input[type=checkbox]::before {
+    content: "off";
+    width: 100%;
+    /* border: 1px solid red; */
+    position: relative;
+    left: 5px;
+    transition: 0.3s;
+    font-size: 0.75rem;
+}
+
+input[type=checkbox]:checked {
+    background-color: #FAB536;
+}
+
+input[type=checkbox]:checked::before {
+    content: "on";
+    left: 20px;
 }
