@@ -4,6 +4,11 @@
     "description": "Netflix dual subtitles for language learning",
     "author": "jsm-txt sophie",
     "homepage_url": "https://github.com/gaja-project/gaja",
+    "icons": {
+        "128":"icons/icon128.png",
+        "48":"icons/icon48.png", 
+        "16":"icons/icon16.png"
+    },
     "permissions": [
         "tabs", 
         "storage", 
