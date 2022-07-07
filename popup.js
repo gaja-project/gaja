@@ -1,72 +1,44 @@
-const form = document.getElementById("popup-form");
-const inputElements = ["vSubtitle", "vDefinition", "small", "medium", "large"];
+// to save the input value of the radio buttons to adjust the sizing for subtitles
 
-// create "change" event listener
-form.addEventListener("change", function() {
+document.addEventListener('DOMContentLoaded', function () {
 
-    // if the conditions are met on the chrome tab, then connect to the subtitles parameters in background.js
-    chrome.tabs.query({active: true, currentWindow: true}, tabs => {
-        // chrome.storage.local.set({ vSubtitle, vDefinition, small, medium, large });
-        
-        // access script.js to execute the script file and also a function for error handling
-        chrome.tabs.executeScript(
-            tabs[0].id, 
-            {
-                file: "script.js"
-            }, 
-            () => {
-                const error = chrome.runtime.lastError;
-                if (error) "Error. Tab ID: " + tabs.id + ": " + JSON.stringify(error);
+    // window.addEventListener('click', function (e) {
+    //     if (e.target.href !== undefined) {
+    //         chrome.tabs.create({ url: e.target.href });
+    //     }
+    // });
 
-                chrome.tabs.sendMessage(tabs[0].id, { vSubtitle, vDefinition, small, medium, large});
-            }
-        )
-    }); 
+    // const form = document.getElementById("popup-form");
+    const inputSize = document.querySelector("input[name=subSize]");
+    const dualSubsOn = document.getElementById("subtitle");
+
+
+    chrome.stoage.sync.get('font_size', function (data) {
+        inputSize.value = data.font_size
+    });
+
+    chrome.storage.sync.get('on_off', function (data) {
+        console.log("Stored value is: ", data.on_off);
+        dualSubsOn.checked = data.on_off;
+
+    });
+
+
+    // event listener for subtitle size
+    inputSize.addEventListener("change", function () {
+        inputSize.value = this.value;
+        chrome.runtime.sendMessage({
+            "message": "update_font_size",
+            "value": this.value
+        });
+    });
+
+    // event listener for turning dual subtitles on
+    dualSubsOn.addEventListener('change', function () {
+        chrome.runtime.sendMessage({
+            "message": "update_on_off",
+            "value": this.checked
+        });
+    });
+
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const inputElements = ["vPos", "fSize", "fColor", "vSubtitle", "vDefinition", "small", "medium", "large"];
-
-// // getting the default data from Chrome's local storage
-// chrome.storage.local.get(inputElements, data => {
-//     inputElements.forEach(element => {
-//         document.getElementById(element).value = data[element];
-//     })
-// })
-
-
-// // add a listener to the form ~ change it to "Change" instead of "submit"
-// form.addEventListener("submit", e => {
-//     // e.preventDefault();
-//     const [vPos, fSize, fColor] =  [...inputElements.map(element => e.target[element].value)];
-
-//     // if the conditions are met on the chrome tab, then connect to the subtitles parameters in background.js
-//     chrome.tabs.query({active: true, currentWindow: true}, tabs => {
-//         chrome.storage.local.set({ vPos, fSize, fColor});
-        
-//         // access script.js to execute the script file and also a function for error handling
-//         chrome.tabs.executeScript(
-//             tabs[0].id, 
-//             {
-//                 file: "script.js"
-//             }, 
-//             () => {
-//                 const error = chrome.runtime.lastError;
-//                 if (error) "Error. Tab ID: " + tabs.id + ": " + JSON.stringify(error);
-
-//                 chrome.tabs.sendMessage(tabs[0].id, { vPos, fSize, fColor});
-//             }
-//         )
-//     }); 
-// })
