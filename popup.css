@@ -2,17 +2,12 @@ html {
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
     color: hsl(210, 48%, 35%);
-   
     padding: 15px 0;
     background-color: #B8D5D8;
 }
 
 form {
     width: 320px;
-    /* box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; */
-    /* background-color: whitesmoke; */
-   
-    /* border-radius:10px; */
 }
 
 fieldset {
