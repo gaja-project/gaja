@@ -2,9 +2,6 @@
 
 document.addEventListener('DOMContentLoaded', function () {
     
-    console.log('hello');
-
-
     // const form = document.getElementById("popup-form");
     const inputSize = document.querySelectorAll("input[name=subSize]");
     const dualSubsOn = document.getElementById("subtitle");
@@ -47,9 +44,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // event listener for turning dual subtitles on
     dualSubsOn.addEventListener('change', function () {   
-        console.log('clicked!');
+        // console.log('clicked!');
 
-        console.log('this value', this.value);
+        // console.log('this value', this.value);
 
         if (this.checked) {
             console.log('on')
