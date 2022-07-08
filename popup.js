@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function () {
     chrome.storage.sync.get('on_off', function (data) {
         console.log("Stored value is: ", data.on_off);
         dualSubsOn.checked = data.on_off;
-
     });
 
 
