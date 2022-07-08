@@ -113,6 +113,11 @@ input[type=checkbox]:checked::before {
     font-size: large;
 }
 
+.radio-hover:hover{
+    background-color: #A7605A;
+    color: black;
+}
+
 .subtitle-input {
     display: flex;
     justify-content: space-around;
@@ -135,9 +140,7 @@ input[type="radio"] {
     background-color: #fc997e1c;
     width: 100%;
     height: 22px;
-
 }
-
 
 input[type="radio"]:checked + label{
     color:black;
