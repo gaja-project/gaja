@@ -16,7 +16,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // storing the values from the popup form into chrome storage
     // chrome.stoage.sync.get('font_size', function (data) {
-    //     inputSize.value = data.font_size
+    //     inputSize.forEach((input) => {
+
+    //         input.value = data.font_size
+    //     })
     // });
 
     chrome.storage.sync.get('on_off', function (data) {
@@ -26,8 +29,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     // event listener for subtitle size
-    inputSize.forEach((radio) => {
-        radio.addEventListener('change', function () {
+    inputSize.forEach((input) => {
+        input.addEventListener('change', function () {
             console.log('button clicked');
 
             console.log("font size", this);
