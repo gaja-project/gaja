@@ -2,15 +2,17 @@ html {
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
     color: hsl(210, 48%, 35%);
-    /* opacity: 0; */
+   
+    padding: 15px 0;
     background-color: #B8D5D8;
 }
 
 form {
-    width: 300px;
+    width: 320px;
     /* box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; */
     /* background-color: whitesmoke; */
    
+    /* border-radius:10px; */
 }
 
 fieldset {
@@ -96,15 +98,21 @@ input[type=checkbox]:checked::before {
 
 /* ---------- */
 
-#small{
-    border-right: 5px solid red;
+.small-button{
+    border-radius: 9999px 0px 0px 999px;
+    border-right: 1px solid #A7605A;
+    font-size: small;
 }
-#medium{
+.medium-button{
+    font-size:medium;
+}
 
+.large-button{
+    border-radius: 0px 9999px 9999px 0px;
+    border-left: 1px solid #A7605A;
+    font-size: large;
 }
-#large{
 
-}
 .subtitle-input {
     display: flex;
     justify-content: space-around;
@@ -128,18 +136,19 @@ input[type="radio"] {
     align-items: center;
     background-color: inherit;
     text-align: center;
-    border-radius: 9999px;
     /* overflow: hidden; */
     transition: linear 0.3s;
-
     background-color: #fc997e1c;
-    width: 100px;
+    width: 100%;
 }
+
 
 input[type="radio"]:checked + label {
     transition: 0.3s;
-}
-
-input[type="radio"]:checked {
+    color:black;
     background-color: #A7605A;
 }
+
+/* input[type="radio"]:checked {
+    background-color: #A7605A;
+} */
