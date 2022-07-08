@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <div>
+    <div class="popup">
         <!-- form for subtitles -->
         <form id="popup-form" class="container">
             <!-- dual subtitle toggle button -->
@@ -26,17 +26,21 @@
                 <input type="checkbox" name="subtitle" id="subtitle">
             </fieldset>
 
-            <fieldset>
-                <legend>Subtitle Size</legend>
+            <fieldset class="subtitle-size">
+                <!--  Legend replaced with label due to css issues -->
+                <label id="size-label">Subtitle Size</label>
 
-                <label for="small">Small</label>
-                <input type="radio" name="subSize" value="24" id="small" checked>
-
-                <label for="medium">Medium</label>
-                <input type="radio" name="subSize" value="36" id="medium">
-
-                <label for="large">Large</label>
-                <input type="radio" name="subSize" value="48" id="large">
+                <!-- Can change the the radio to buttons to better match the wireframes -->
+                <div class="subtitle-input">
+                    <label for="small">Small</label>
+                    <input type="radio" name="subSize" value="24" id="small" checked>
+            
+                    <label for="medium">Medium</label>
+                    <input type="radio" name="subSize" value="36" id="medium">
+            
+                    <label for="large">Large</label>
+                    <input type="radio" name="subSize" value="48" id="large">
+                </div>
             </fieldset>
 
             <!-- <div class="input-info">Vertical position from bottom [px]</div>
