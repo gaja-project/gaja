@@ -4,7 +4,7 @@ chrome.storage.sync.get('on_off', function (data) {
         console.log("Preferences: on_off : " + data.on_off + " this is working!");
     }
     else {
-        console.log("No Opacity Preference Found - Setting to ON");
+        console.log("data is NOT null");
         chrome.storage.sync.set({ 'on_off': 1 });
     }
 });
