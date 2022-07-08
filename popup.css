@@ -1,19 +1,16 @@
 html {
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
-    color: #2E5984;
+    color: hsl(210, 48%, 35%);
+    /* opacity: 0; */
     background-color: #B8D5D8;
-
-    /* border:solid 10px;
-    border-radius:20px; */
 }
 
 form {
     width: 300px;
     /* box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; */
     /* background-color: whitesmoke; */
-
-    
+   
 }
 
 fieldset {
@@ -24,6 +21,11 @@ fieldset {
 - style the form element and its children
 - colouring and font
 */
+
+#size-label{
+    padding: 0;
+    margin: 0; 
+}
 
 .subtitle-size{
     /* padding: 0 .5em 0 .5em; */
@@ -90,4 +92,54 @@ input[type=checkbox]:checked {
 input[type=checkbox]:checked::before {
     content: "on";
     left: 20px;
+}
+
+/* ---------- */
+
+#small{
+    border-right: 5px solid red;
+}
+#medium{
+
+}
+#large{
+
+}
+.subtitle-input {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* border-radius: 9999px;
+    background-color: #be8a87; */
+}
+
+input[type="radio"] {
+    appearance: none;
+    display: none;
+    border-radius: 9999px;
+    
+    /* opacity: 11%; */
+
+}
+
+.subtitle-input > label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: inherit;
+    text-align: center;
+    border-radius: 9999px;
+    /* overflow: hidden; */
+    transition: linear 0.3s;
+
+    background-color: #fc997e1c;
+    width: 100px;
+}
+
+input[type="radio"]:checked + label {
+    transition: 0.3s;
+}
+
+input[type="radio"]:checked {
+    background-color: #A7605A;
 }
