@@ -1,14 +1,10 @@
 // to save the input value of the radio buttons to adjust the sizing for subtitles
 
+
 document.addEventListener('DOMContentLoaded', function () {
     
-    // const form = document.getElementById("popup-form");
     const inputSize = document.querySelectorAll("input[name=subSize]");
     const dualSubsOn = document.getElementById("subtitle");
-
-    // console.log(dualSubsOn);
-    // console.log(inputSize);
-
 
 
     // storing the values from the popup form into chrome storage
@@ -19,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     //     })
     // });
 
+    // chrome keeping track of if on-off button is activated for dual subs
     chrome.storage.sync.get('on_off', function (data) {
         console.log("Stored value is: ", data.on_off);
         dualSubsOn.checked = data.on_off;
@@ -28,9 +25,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // event listener for subtitle size
     inputSize.forEach((input) => {
         input.addEventListener('change', function () {
-            console.log('button clicked');
+            // console.log('button clicked');
 
-            console.log("font size", this);
+            // console.log("font size", this);
 
             inputSize.value = this.value;
             chrome.runtime.sendMessage({
@@ -44,9 +41,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // event listener for turning dual subtitles on
     dualSubsOn.addEventListener('change', function () {   
-        // console.log('clicked!');
-
-        // console.log('this value', this.value);
 
         if (this.checked) {
             console.log('on')
