@@ -1,4 +1,4 @@
-chrome.runtime.onMessage.addListener((request, sendRespone, sendResponse) => {
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
     if (request.message === "update_on_off") {
         console.log('hello! I work!');
@@ -8,6 +8,8 @@ chrome.runtime.onMessage.addListener((request, sendRespone, sendResponse) => {
     // // createNewSubContainer();
     // changeSubtitle(message.vSubtitle, message.vDefinition, message.small, message.medium, message.large);
 })
+
+
 
 changeSubtitle = (vSubtitle, vDefinition, small, medium, large) => {
     // logging that our function works

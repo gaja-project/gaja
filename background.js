@@ -1,13 +1,13 @@
-//track on-off toggling for dual subtitles
-chrome.storage.sync.get('on_off', function (data) {
-    if (data.on_off != null) {
-        console.log("Preferences: on_off : " + data.on_off + " this is working!");
-    }
-    else {
-        console.log("data is NOT null");
-        chrome.storage.sync.set({ 'on_off': 1 });
-    }
-});
+// //track on-off toggling for dual subtitles
+// chrome.storage.sync.get('on_off', function (data) {
+//     if (data.on_off != null) {
+//         console.log("Preferences: on_off : " + data.on_off + " this is working!");
+//     }
+//     else {
+//         console.log("data is null");
+//         chrome.storage.sync.set({ 'on_off': 1 });
+//     }
+// });
 
 
 chrome.runtime.onMessage.addListener(
@@ -21,7 +21,7 @@ chrome.runtime.onMessage.addListener(
             //Store into chrome using chrome.storage API
             chrome.storage.sync.set({ 'on_off': request.value });           
 
-            chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) { 
+            chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) { //Pass message onto Content.js
                 chrome.tabs.sendMessage(tabs[0].id, {
                     "message": "update_on_off",
                     "value": request.value
@@ -33,9 +33,12 @@ chrome.runtime.onMessage.addListener(
         if (request.message === "update_font_size") {
 
             console.log("Background.js recieved message from SUBSIZE to update font size to " + request.value);
-            chrome.storage.sync.set({ 'font_multiplier': parseFloat(request.value) });           //Store into local variables
 
-            chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) { //Pass message onto Content.js
+            
+            //Store into local variables
+            chrome.storage.sync.set({ 'font_size': request.value });           
+
+            chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) { //Pass message onto Content.js
                 chrome.tabs.sendMessage(tabs[0].id, {
                     "message": "update_font_size",
                     "value": request.value
