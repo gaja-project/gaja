@@ -10,9 +10,10 @@
         "16":"icons/icon16.png"
     },
     "permissions": [
-        "tabs", 
+        "tabs",
+        "activeTab",
         "storage", 
-        "declarativeContent"
+        "scripting"
     ],
     "host_permissions": ["https://netflix.com/*"],
     "background": {

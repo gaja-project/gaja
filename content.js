@@ -1,13 +1,55 @@
-chrome.runtime.onMessage.addListener((request, sendRespone, sendResponse) => {
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
-    if (request.message === "update_on_off") {
+    if (request.message === "update_on_off" || request.message === "update_font_size") {
         console.log('hello! I work!');
+
+
+        chrome.storage.sync.get('font_size', function (data) {
+                console.log("Stored font value is: ", data.font_size);
+
+                changeSubSize(data.font_size);
+        });
+
     }
 
     // console.log('hello');
     // // createNewSubContainer();
     // changeSubtitle(message.vSubtitle, message.vDefinition, message.small, message.medium, message.large);
 })
+
+
+const gettingFormSettings = function(setting) {
+    chrome.storage.sync.get(setting, function(data) {
+        if (setting === "font_size") {
+            window.font_size = data[setting];
+        }
+    })
+}
+
+// function for updating subtitle size
+const changeSubSize = function(fontSize) {
+    // getting access to the subtitles
+    const windowTextContainer = document.querySelector('.player-timedtext');
+
+    const textContainer = windowTextContainer.querySelectorAll('.player-timedtext-text-container');
+    const textContainerSpan1 = textContainer.firstChild;
+    const textContainerSpan2 = textContainerSpan1.firstChild;
+    const subs = textContainerSpan2.innerText;
+
+    console.log(subs.innerHTML);
+
+    textContainer.style.fontSize = `${fontSize}px`;
+
+    // textContainerSpan1.style.fontSize = `${fontSize}px`;
+    // textContainerSpan2.style.fontSize = `${fontSize}px`;
+
+}
+
+
+
+
+
+
 
 changeSubtitle = (vSubtitle, vDefinition, small, medium, large) => {
     // logging that our function works
