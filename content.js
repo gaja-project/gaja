@@ -17,12 +17,26 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     // changeSubtitle(message.vSubtitle, message.vDefinition, message.small, message.medium, message.large);
 })
 
+
+const gettingFormSettings = function(setting) {
+    chrome.storage.sync.get(setting, function(data) {
+        if (setting === "font_size") {
+            window.font_size = data[setting];
+        }
+    })
+}
+
 // function for updating subtitle size
 const changeSubSize = function(fontSize) {
     // getting access to the subtitles
-    const textContainer = document.querySelector('.player-timedtext-text-container');
-    // const textContainerSpan1 = textContainer.firstChild;
-    // const textContainerSpan2 = textContainerSpan1.firstChild;
+    const windowTextContainer = document.querySelector('.player-timedtext');
+
+    const textContainer = windowTextContainer.querySelectorAll('.player-timedtext-text-container');
+    const textContainerSpan1 = textContainer.firstChild;
+    const textContainerSpan2 = textContainerSpan1.firstChild;
+    const subs = textContainerSpan2.innerText;
+
+    console.log(subs.innerHTML);
 
     textContainer.style.fontSize = `${fontSize}px`;
 
