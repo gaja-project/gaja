@@ -1,5 +1,5 @@
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-
+    
     if (request.message === "update_on_off" || request.message === "update_font_size") {
         console.log('hello! I work!');
 
@@ -7,8 +7,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         chrome.storage.sync.get('font_size', function (data) {
                 console.log("Stored font value is: ", data.font_size);
 
-                changeSubSize(data.font_size);
+                subSize = data.font_size;
+                // changeSubSize(data.font_size);
         });
+
 
     }
 
@@ -31,12 +33,14 @@ const changeSubSize = function(fontSize) {
     // getting access to the subtitles
     const windowTextContainer = document.querySelector('.player-timedtext');
 
-    const textContainer = windowTextContainer.querySelectorAll('.player-timedtext-text-container');
-    const textContainerSpan1 = textContainer.firstChild;
-    const textContainerSpan2 = textContainerSpan1.firstChild;
-    const subs = textContainerSpan2.innerText;
+    textContainer = windowTextContainer.querySelectorAll('span')
 
-    console.log(subs.innerHTML);
+    // const textContainer = windowTextContainer.querySelectorAll('.player-timedtext-text-container');
+    // const textContainerSpan1 = textContainer.querySelector('span');
+    // const textContainerSpan2 = textContainerSpan1.querySelector('span');
+    // const subs = textContainerSpan2.innerText;
+
+    // console.log(subs.innerHTML);
 
     textContainer.style.fontSize = `${fontSize}px`;
 

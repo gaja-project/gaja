@@ -19,13 +19,16 @@ chrome.runtime.onMessage.addListener(
             console.log("Background.js recieved message from SUBTITLE to update on_off to " + request.value);
 
             //Store into chrome using chrome.storage API
-            chrome.storage.sync.set({ 'on_off': request.value });           
+            chrome.storage.sync.set({ 'on_off': request.value });      
 
-            chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) { //Pass message onto Content.js
+            chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+
+                //Pass message onto Content.js
                 chrome.tabs.sendMessage(tabs[0].id, {
                     "message": "update_on_off",
                     "value": request.value
                 });
+                
             });
         }
 
