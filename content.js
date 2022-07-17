@@ -4,8 +4,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     
     if (request.message === "update_on_off" || request.message === "update_font_size") {
 
-        divElement();
+        // subElement();
         // console.log('hello! I work!');
+        divElement();
 
 
         chrome.storage.sync.get('font_size', function (data) {
@@ -23,10 +24,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 
 
-divElement = () => {
+subElement = () => {
     console.log('observer working');
-    
-    
     callback = () => {
         // console.log('hi, observer is working!')
         
@@ -44,7 +43,7 @@ divElement = () => {
 
         // can't seem to get all the subtitle text to show up consistently
         console.log(subsLine1);
-        console.log("hi", subsLine2);
+        // console.log("hi", subsLine2);
         // if (textContainerSpan1 && textContainerSpan2) {
         //     console.log(subsLine1, subsLine2);
         // } else if (subsLine1) {
@@ -67,6 +66,34 @@ divElement = () => {
     const subContainer = document.querySelector(".player-timedtext");
     window.observer = new MutationObserver(callback);
     window.observer.observe(subContainer, {
+        childList: true,
+        attributes: false,
+        subtree: true
+    });
+}
+
+
+divElement = () => {
+    console.log('div element observer working');
+
+
+    callback = () => {
+
+        console.log('hello! new div element here!')
+
+        // need to put this within an async-await function because it keeps re-rendering
+            // const divEl = document.createElement('div');
+            // divEl.style.border = "1px solid yellow";
+
+            // container.appendChild(divEl);
+
+    }
+
+    const container = document.querySelector(".player-timedtext");
+    // const spanElement = subContainer.firstChild;
+
+    window.observer = new MutationObserver(callback);
+    window.observer.observe(container, {
         childList: true,
         attributes: false,
         subtree: true
