@@ -252,8 +252,6 @@ changeSubtitle = (vSubtitle, vDefinition, small, medium, large) => {
 
 function createNewSubContainer(){
 
-
-
     // let elements = document.getElementsByTagName("*");
 
     //
@@ -280,6 +278,13 @@ function createNewSubContainer(){
     divy.style.height = "100px"
     divy.style.width = "200px"
     console.log("Container working")
+    // divy.style.marginRight = auto;
+    // margin-left: auto;
+    // margin-right: auto;
+    // table-layout: fixed;
+    // border-collapse: collapse;
+    // z-index: -1;
+    // position:relative;
 
     // window.old_inset = timedtext.style.inset;
     // window.original_subs_placement = parseInt(document.getElementsByClassName("player-timedtext")[0].getBoundingClientRect().width)*.025; //Original text is placed at Left:5%, using .right on original subs wasn't consistent
@@ -300,13 +305,10 @@ function createNewSubContainer(){
                     if (mutation.target.innerText!==window.old_text){ 
                         //I added this functionality last but it's much better than the clear flag, eventually i'll make this the only way to trigger a sub update,
                         //but for now I'll just make it support the current clear flag functionality
-
                         window.old_text=mutation.target.innerText;
                         window.cleared=1;
                         //console.log("Sub changed detected");
-
                     }
-
                     this.disconnect(); //stop observer so I can add subs without triggering this infinitely
                     
                 }
@@ -323,7 +325,6 @@ function createNewSubContainer(){
                 //     //window.my_timedtext_element.innerText = "";
                     
                 // }
-                
                 
             }
             
@@ -349,17 +350,17 @@ function createNewSubContainer(){
                     //update_style('originaltext_color');
                     
 
-                    if (window.original_text_side == 0){
-                        window.original_subs_placement = parseInt(document.getElementsByClassName("player-timedtext")[0].getBoundingClientRect().x)+ (parseInt(document.getElementsByClassName("player-timedtext")[0].getBoundingClientRect().width)*.025);
-                        var sub_dist = (parseInt(document.getElementsByClassName("player-timedtext")[0].firstChild.getBoundingClientRect().width)+(window.original_subs_placement)+10);
-                        window.my_timedtext_element.style['left']=sub_dist+'px';
+                    // if (window.original_text_side == 0){
+                    //     window.original_subs_placement = parseInt(document.getElementsByClassName("player-timedtext")[0].getBoundingClientRect().x)+ (parseInt(document.getElementsByClassName("player-timedtext")[0].getBoundingClientRect().width)*.025);
+                    //     var sub_dist = (parseInt(document.getElementsByClassName("player-timedtext")[0].firstChild.getBoundingClientRect().width)+(window.original_subs_placement)+10);
+                    //     window.my_timedtext_element.style['left']=sub_dist+'px';
 
-                    }
-                    else{
-                        window.original_subs_placement = parseInt(my_timedtext_element.getBoundingClientRect().x)+ parseInt(my_timedtext_element.getBoundingClientRect().width);
-                        var sub_dist = (window.original_subs_placement)+10 - parseInt(document.getElementsByClassName("player-timedtext")[0].getBoundingClientRect().x);
-                        document.getElementsByClassName("player-timedtext")[0].firstChild.style['left']=sub_dist+'px';
-                    }
+                    // }
+                    // else{
+                    //     window.original_subs_placement = parseInt(my_timedtext_element.getBoundingClientRect().x)+ parseInt(my_timedtext_element.getBoundingClientRect().width);
+                    //     var sub_dist = (window.original_subs_placement)+10 - parseInt(document.getElementsByClassName("player-timedtext")[0].getBoundingClientRect().x);
+                    //     document.getElementsByClassName("player-timedtext")[0].firstChild.style['left']=sub_dist+'px';
+                    // }
 
                 
             }
