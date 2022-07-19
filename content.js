@@ -4,9 +4,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     
     if (request.message === "update_on_off" || request.message === "update_font_size") {
 
-        // subElement();
+        subElement();
         // console.log('hello! I work!');
-        divElement();
+        // divElement();
 
 
         chrome.storage.sync.get('font_size', function (data) {
