@@ -1,28 +1,24 @@
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     
-    
-    
     if (request.message === "update_on_off" || request.message === "update_font_size") {
 
         subElement();
         // console.log('hello! I work!');
         // divElement();
+        createNewSubContainer()
 
 
+        // // trying to get access to the font_size value that's been saved onto chrome.storage and changing it to be the user's chosen setting
         // chrome.storage.sync.get('font_size', function (data) {
         //         console.log("Stored font value is: ", data.font_size);
 
-                subSize = data.font_size;
+                // subSize = data.font_size;
                 // changeSubSize(data.font_size);
-        });
-
-        createNewSubContainer()
-
-    }
+        // };
 
     // console.log('hello');
     // // createNewSubContainer();
-})
+});
 
 
 
@@ -78,9 +74,7 @@ subElement = () => {
 divElement = () => {
     console.log('div element observer working');
 
-
     callback = () => {
-
         console.log('hello! new div element here!')
 
         // need to put this within an async-await function because it keeps re-rendering
@@ -112,6 +106,8 @@ const gettingFormSettings = function(setting) {
         }
     })
 }
+
+
 
 // function for updating subtitle size
 const changeSubSize = function(fontSize) {
@@ -411,7 +407,7 @@ function createNewSubContainer(){
 
 
 
-// code from another example
+////////////********* code from another example **********////////////
 
 // changeSubtitle = (vSubtitle, vDefinition, small, medium, large) => {
 //     // logging that our function works
