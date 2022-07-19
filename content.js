@@ -274,11 +274,33 @@ function createNewSubContainer(){
     const p = document.createElement('p');
     divy.append(p)
     p.innerHTML = "hello world"
-    divy.style.border = "10px solid yellow";
-    divy.style.height = "100px"
-    divy.style.width = "200px"
+    // divy.style.border = "10px solid yellow";
+    p.style.margin = "0"
+    
+    divy.style.width = "100vw"
+    divy.style.display = "block"
+    divy.style.whiteSpace = "pre-wrap"
+    divy.style.textAlign = "center"
+    divy.style.position = "absolute"
+    divy.style.border = "10px solid yellow"
+    divy.style.fontSize = "50px"
+    // divy.style.bottom = "50px"
+    
+
     console.log("Container working")
-    // divy.style.marginRight = auto;
+
+    // Gets original sub placement attributes
+    window.original_subs_placement_height = parseInt(timedtext.getBoundingClientRect().height); 
+    // window.original_subs_placement_y = parseInt(timedtext.getBoundingClientRect().y); 
+    window.original_subs_placement_bottom = parseInt(timedtext.getBoundingClientRect().bottom); 
+    divy.style.height = original_subs_placement_height + "px";
+    divy.style.top = original_subs_placement_bottom +'px';
+
+
+
+    // <div class="my-timedtext-container" 
+    // style="display: block; white-space: pre-wrap; text-align: center; position: absolute; font-size: 10px; line-height: normal; color: rgb(255, 255, 255); text-shadow: rgb(0, 0, 0) 0px 0px 7px; font-family: &quot;Netflix Sans&quot;, &quot;Helvetica Nueue&quot;, Helvetica, Arial, sans-serif; font-weight: bolder; left: 137.425px; bottom: 281.3px; opacity: 0.8;" translate="yes">(명석) 그리고 우영우 변호사는<br>준호 씨랑 가서</div>
+    // // divy.style.marginRight = auto;
     // margin-left: auto;
     // margin-right: auto;
     // table-layout: fixed;
