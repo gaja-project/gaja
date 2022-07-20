@@ -1,4 +1,6 @@
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+
+    console.log('the on/off button has been interacted with!', request.message);
     
     if (request.message === "update_on_off" || request.message === "update_font_size") {
 
