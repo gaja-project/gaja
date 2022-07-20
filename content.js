@@ -131,17 +131,7 @@ const changeSubSize = function(fontSize) {
 
 function createNewSubContainer(){
 
-    // let elements = document.getElementsByTagName("*");
-
-    //
-    // for(let id = 0; id < elements.length; ++id) {
-    //     elements[id].addEventListener('contextmenu',function(e){e.stopPropagation()},true);
-    //         elements[id].oncontextmenu = null;
-    // }
-    // const element = document.getElementsByClassName('my-timed-text-container')
-    // element.remove();
-
-    var id = "player-timedtext";
+    const id = "player-timedtext";
     const timedtext = document.getElementsByClassName(id)[0];
 
     // //create container
@@ -153,9 +143,11 @@ function createNewSubContainer(){
     const p = document.createElement('p');
     divy.append(p)
     p.innerHTML = "hello world"
-    // divy.style.border = "10px solid yellow";
+
+    // changing default styling of p tag
     p.style.margin = "0"
-    
+
+    // styling for divy element
     divy.style.width = "100vw"
     divy.style.display = "block"
     divy.style.whiteSpace = "pre-wrap"
@@ -176,16 +168,6 @@ function createNewSubContainer(){
     divy.style.top = original_subs_placement_bottom +'px';
 
 
-
-    // <div class="my-timedtext-container" 
-    // style="display: block; white-space: pre-wrap; text-align: center; position: absolute; font-size: 10px; line-height: normal; color: rgb(255, 255, 255); text-shadow: rgb(0, 0, 0) 0px 0px 7px; font-family: &quot;Netflix Sans&quot;, &quot;Helvetica Nueue&quot;, Helvetica, Arial, sans-serif; font-weight: bolder; left: 137.425px; bottom: 281.3px; opacity: 0.8;" translate="yes">(명석) 그리고 우영우 변호사는<br>준호 씨랑 가서</div>
-    // // divy.style.marginRight = auto;
-    // margin-left: auto;
-    // margin-right: auto;
-    // table-layout: fixed;
-    // border-collapse: collapse;
-    // z-index: -1;
-    // position:relative;
 
     // window.old_inset = timedtext.style.inset;
     // window.original_subs_placement = parseInt(document.getElementsByClassName("player-timedtext")[0].getBoundingClientRect().width)*.025; //Original text is placed at Left:5%, using .right on original subs wasn't consistent
