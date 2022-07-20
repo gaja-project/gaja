@@ -6,8 +6,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         // console.log('hello! I work!');
         // divElement();
         createNewSubContainer()
-
-
+    }
         // // trying to get access to the font_size value that's been saved onto chrome.storage and changing it to be the user's chosen setting
         // chrome.storage.sync.get('font_size', function (data) {
         //         console.log("Stored font value is: ", data.font_size);
@@ -197,78 +196,92 @@ function createNewSubContainer(){
 
     window.old_text = "";
 
-        const callback = function(mutationsList, observer){ //Observes original text box for changes
-        for (const mutation of mutationsList){
-            if (mutation.type === 'childList' && mutation.target.className && mutation.target.className==="player-timedtext"){ //track removal/addition to subtitle container
-                
-                if (mutation.addedNodes.length===1){ //If added rather than removed..
+    const callback = function (mutationsList, observer) { //Observes original text box for changes
+        for (const mutation of mutationsList) {
+            if (mutation.type === 'childList' && mutation.target.className && mutation.target.className === "player-timedtext") { //track removal/addition to subtitle container
+
+                if (mutation.addedNodes.length === 1) { //If added rather than removed..
                     console.log("Observer obsered something")
 
-                    if (mutation.target.innerText!==window.old_text){ 
+                    if (mutation.target.innerText !== window.old_text) {
                         //I added this functionality last but it's much better than the clear flag, eventually i'll make this the only way to trigger a sub update,
                         //but for now I'll just make it support the current clear flag functionality
-                        window.old_text=mutation.target.innerText;
-                        window.cleared=1;
-                        //console.log("Sub changed detected");
+                        window.old_text = mutation.target.innerText;
+                        window.cleared = 1;
+                        console.log("Sub changed detected");
                     }
                     this.disconnect(); //stop observer so I can add subs without triggering this infinitely
-                    
+
                 }
                 // else{
-                
+
                 //     // if (mutation.target.childElementCount===0){ //No children means the mutation was a subtitle CLEAR rather than refresh, double check necessary because refresh would make it here as well but with children (..i think? I forget at this point)
-                        
+
                 //     //     window.cleared=1;
                 //     //     // document.getElementsByClassName('my-timedtext-container')[0].innerText = "";
                 //     //     // window.last_subs="";
-                        
+
 
                 //     // }
                 //     //window.my_timedtext_element.innerText = "";
-                    
+
                 // }
-                
+
             }
-            
-            else if(window.on_off && mutation.type==='attributes' && mutation.target.className==="player-timedtext" && mutation.target.firstChild && mutation.target.style.inset != window.old_inset){ //For adjusting subtitle style when window is resized
-                    //Netflix constantly refreshes the text so I have to constantly reapply them
 
-                    const caption_row = document.getElementsByClassName("player-timedtext")[0];
-                    var container_count = caption_row.childElementCount;
-                    if (container_count == 2){ // Why work around Netflix sometimes using a seperate container for each row when I can just force it back into using one.. wish I'd done this earlier
-                        document.getElementsByClassName('player-timedtext-text-container')[0].firstChild.innerText= document.getElementsByClassName('player-timedtext-text-container')[0].firstChild.innerText + '\n '+ document.getElementsByClassName("player-timedtext-text-container")[1].firstChild.innerText;
-                        const netflixElement = document.getElementsByClassName('player-timedtext-text-container')
-                        netflixElement.remove();
-                    
-                        // $('.player-timedtext-text-container')[1].remove();    
-                        container_count=0;
-                    }
+            else if (window.on_off && mutation.type === 'attributes' && mutation.target.className === "player-timedtext" && mutation.target.firstChild && mutation.target.style.inset != window.old_inset) { //For adjusting subtitle style when window is resized
+
+                //Netflix constantly refreshes the text so I have to constantly reapply them
+                const caption_row = document.getElementsByClassName("player-timedtext")[0];
+                var container_count = caption_row.childElementCount;
+                if (container_count == 2) {
+                    console.log("combine container")
+                    // Why work around Netflix sometimes using a seperate container for each row when I can just force it back into using one.. wish I'd done this earlier
+                    document.getElementsByClassName('player-timedtext-text-container')[0].firstChild.innerText = document.getElementsByClassName('player-timedtext-text-container')[0].firstChild.innerText + '\n ' + document.getElementsByClassName("player-timedtext-text-container")[1].firstChild.innerText;
+
+                    //removes sub
+                    const netflixElement = document.getElementsByClassName('player-timedtext-text-container')
+                    netflixElement.remove();
+
+                    // $('.player-timedtext-text-container')[1].remove();    
+                    container_count = 0;
+                }
 
 
-                    // window.baseFont = parseFloat(mutation.target.firstChild.firstChild.firstChild.style.fontSize.replace('px','')); //font size changes way more often than on nrk so will take basefont after every clear instead (if inset updates, update this as well)
-                    // window.current_size = window.baseFont*window.current_multiplier+'px';
-                    // update_style('font_size');
-                    //update_style('originaltext_opacity');
-                    //update_style('originaltext_color');
-                    
+                // window.baseFont = parseFloat(mutation.target.firstChild.firstChild.firstChild.style.fontSize.replace('px','')); //font size changes way more often than on nrk so will take basefont after every clear instead (if inset updates, update this as well)
+                // window.current_size = window.baseFont*window.current_multiplier+'px';
+                // update_style('font_size');
+                //update_style('originaltext_opacity');
+                //update_style('originaltext_color');
 
-                    // if (window.original_text_side == 0){
-                    //     window.original_subs_placement = parseInt(document.getElementsByClassName("player-timedtext")[0].getBoundingClientRect().x)+ (parseInt(document.getElementsByClassName("player-timedtext")[0].getBoundingClientRect().width)*.025);
-                    //     var sub_dist = (parseInt(document.getElementsByClassName("player-timedtext")[0].firstChild.getBoundingClientRect().width)+(window.original_subs_placement)+10);
-                    //     window.my_timedtext_element.style['left']=sub_dist+'px';
 
-                    // }
-                    // else{
-                    //     window.original_subs_placement = parseInt(my_timedtext_element.getBoundingClientRect().x)+ parseInt(my_timedtext_element.getBoundingClientRect().width);
-                    //     var sub_dist = (window.original_subs_placement)+10 - parseInt(document.getElementsByClassName("player-timedtext")[0].getBoundingClientRect().x);
-                    //     document.getElementsByClassName("player-timedtext")[0].firstChild.style['left']=sub_dist+'px';
-                    // }
+                if (window.original_text_side == 0) {
 
-                
+                    console.log("0");
+                    // Match sub placement data and applies it to my timed text container
+                    window.original_subs_placement = parseInt(document.getElementsByClassName("player-timedtext")[0].getBoundingClientRect().x) + (parseInt(document.getElementsByClassName("player-timedtext")[0].getBoundingClientRect().width) * .025);
+                    var sub_dist = (parseInt(document.getElementsByClassName("player-timedtext")[0].firstChild.getBoundingClientRect().width) + (window.original_subs_placement) + 10);
+                    window.my_timedtext_element.style['left'] = sub_dist + 'px';
+
+                }
+                else {
+                    console.log("1");
+                    // Matches my timed text container ???
+                    window.original_subs_placement = parseInt(my_timedtext_element.getBoundingClientRect().x) + parseInt(my_timedtext_element.getBoundingClientRect().width);
+                    var sub_dist = (window.original_subs_placement) + 10 - parseInt(document.getElementsByClassName("player-timedtext")[0].getBoundingClientRect().x);
+                    document.getElementsByClassName("player-timedtext")[0].firstChild.style['left'] = sub_dist + 'px';
+                }
+
+
             }
             
         }
+        
     };
+
+    window.observer = new MutationObserver(callback);
+    window.observer.observe(timedtext,window.config);
+}
 
 
 
