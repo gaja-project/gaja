@@ -2,9 +2,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     
     if (request.message === "update_on_off" || request.message === "update_font_size") {
 
-        subElement();
+        // subElement();
         // console.log('hello! I work!');
-        // divElement();
         createNewSubContainer()
     }
         // // trying to get access to the font_size value that's been saved onto chrome.storage and changing it to be the user's chosen setting
@@ -21,80 +20,39 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 
 
-subElement = () => {
-    console.log('observer working');
-    callback = () => {
-        // console.log('hi, observer is working!')
-        
-        const textContainer = document.querySelector('.player-timedtext-text-container');
-        const textContainerSpan = textContainer.firstChild;
-        const textContainerSpan1 = textContainerSpan.firstChild;
-        const textContainerSpan2 = textContainerSpan1.nextSibling;
+// subElement = () => {
+//     // console.log('observer working');
+//     callback = () => {
+//         // console.log('hi, subElement observer is working!')
+//         const textContainer = document.querySelector('.player-timedtext-text-container');
+//         const textContainerSpan = textContainer.firstChild;
+//         const textContainerSpan1 = textContainerSpan.firstChild;
+//         const textContainerSpan2 = textContainerSpan1.nextSibling;
 
-        const subsLine1 = textContainerSpan1.innerText;
-        // const subsLine2 = textContainerSpan2.innerText;
+//         const subsLine1 = textContainerSpan1.innerText;
+//         // const subsLine2 = textContainerSpan2.innerText;
 
-        
-        textContainerSpan1.style.color = "red";
+//         // textContainerSpan1.style.color = "red";
 
-
-        // can't seem to get all the subtitle text to show up consistently
-        console.log(subsLine1);
-        // console.log("hi", subsLine2);
-        // if (textContainerSpan1 && textContainerSpan2) {
-        //     console.log(subsLine1, subsLine2);
-        // } else if (subsLine1) {
-        // console.log(subsLine1);
-        // }
-
-
-        // creating a new container 
-            // can't write it like this because it keeps re-rendering on and breaks the browser
-
-            // const newDiv = document.createElement('div')
-
-            // newDiv.style.border = "1px solid yellow";
-            // newDiv.innerHTML = "hi";
-
-            // textContainerSpan.appendChild(newDiv);
-        
-    }
+//         // can't seem to get all the subtitle text to show up consistently=
+//         console.log(subsLine1);
+//         // console.log("hi", subsLine2);
+//         // if (textContainerSpan1 && textContainerSpan2) {
+//         //     console.log(subsLine1, subsLine2);
+//         // } else if (subsLine1) {
+//         // console.log(subsLine1);
+//         // } 
+//     }
     
-    const subContainer = document.querySelector(".player-timedtext");
-    window.observer = new MutationObserver(callback);
-    window.observer.observe(subContainer, {
-        childList: true,
-        attributes: false,
-        subtree: true
-    });
-}
-
-
-divElement = () => {
-    console.log('div element observer working');
-
-    callback = () => {
-        console.log('hello! new div element here!')
-
-        // need to put this within an async-await function because it keeps re-rendering
-            // const divEl = document.createElement('div');
-            // divEl.style.border = "1px solid yellow";
-
-            // container.appendChild(divEl);
-
-    }
-
-    const container = document.querySelector(".player-timedtext");
-    // const spanElement = subContainer.firstChild;
-
-    window.observer = new MutationObserver(callback);
-    window.observer.observe(container, {
-        childList: true,
-        attributes: false,
-        subtree: true
-    });
-}
-
+//     const subContainer = document.querySelector(".player-timedtext");
+//     window.observer = new MutationObserver(callback);
+//     window.observer.observe(subContainer, {
+//         childList: true,
+//         attributes: false,
+//         // attributeFilter: ["style"],
+//         subtree: true 
+//     });
+// }
 
 
 
@@ -107,45 +65,53 @@ const gettingFormSettings = function(setting) {
 }
 
 
+// // function for updating subtitle size
+// const changeSubSize = function(fontSize) {
+//     // getting access to the subtitles
+//     const windowTextContainer = document.querySelector('.player-timedtext');
 
-// function for updating subtitle size
-const changeSubSize = function(fontSize) {
-    // getting access to the subtitles
-    const windowTextContainer = document.querySelector('.player-timedtext');
+//     textContainer = windowTextContainer.querySelectorAll('span')
 
-    textContainer = windowTextContainer.querySelectorAll('span')
+//     // const textContainer = windowTextContainer.querySelectorAll('.player-timedtext-text-container');
+//     // const textContainerSpan1 = textContainer.querySelector('span');
+//     // const textContainerSpan2 = textContainerSpan1.querySelector('span');
+//     // const subs = textContainerSpan2.innerText;
 
-    // const textContainer = windowTextContainer.querySelectorAll('.player-timedtext-text-container');
-    // const textContainerSpan1 = textContainer.querySelector('span');
-    // const textContainerSpan2 = textContainerSpan1.querySelector('span');
-    // const subs = textContainerSpan2.innerText;
+//     // console.log(subs.innerHTML);
 
-    // console.log(subs.innerHTML);
+//     textContainer.style.fontSize = `${fontSize}px`;
 
-    textContainer.style.fontSize = `${fontSize}px`;
+//     // textContainerSpan1.style.fontSize = `${fontSize}px`;
+//     // textContainerSpan2.style.fontSize = `${fontSize}px`;
 
-    // textContainerSpan1.style.fontSize = `${fontSize}px`;
-    // textContainerSpan2.style.fontSize = `${fontSize}px`;
+// }
 
-}
+
 
 function createNewSubContainer(){
 
     const id = "player-timedtext";
     const timedtext = document.getElementsByClassName(id)[0];
 
+    timedtext.setAttribute('translate', 'no');
+
     // //create container
     const videoContainer = document.querySelector('.watch-video');
     const divy = document.createElement('div');
-    divy.className = "my-timed-text-container"
-    videoContainer.appendChild(divy);
+    divy.className = "my-timed-text-container";
 
-    const p = document.createElement('p');
-    divy.append(p)
-    p.innerHTML = "hello world"
+    divy.setAttribute('translate', 'yes');
+
+    videoContainer.appendChild(divy);
+    
+    const mySubs = document.createElement('p');
+
+    divy.appendChild(mySubs);
+    
+    // p.innerHTML = "hello world"
 
     // changing default styling of p tag
-    p.style.margin = "0"
+    mySubs.style.margin = "0"
 
     // styling for divy element
     divy.style.width = "100vw"
@@ -155,44 +121,69 @@ function createNewSubContainer(){
     divy.style.position = "absolute"
     divy.style.border = "10px solid yellow"
     divy.style.fontSize = "50px"
-    // divy.style.bottom = "50px"
+    divy.style.top = "80px"
+    divy.style.height = "100px";
     
 
     console.log("Container working")
 
+
+    // this code here needs to be dynamic
     // Gets original sub placement attributes
     window.original_subs_placement_height = parseInt(timedtext.getBoundingClientRect().height); 
     // window.original_subs_placement_y = parseInt(timedtext.getBoundingClientRect().y); 
     window.original_subs_placement_bottom = parseInt(timedtext.getBoundingClientRect().bottom); 
-    divy.style.height = original_subs_placement_height + "px";
-    divy.style.top = original_subs_placement_bottom +'px';
+    // divy.style.height = original_subs_placement_height + "px";
+    // divy.style.top = original_subs_placement_bottom +'px';
 
 
 
     // window.old_inset = timedtext.style.inset;
     // window.original_subs_placement = parseInt(document.getElementsByClassName("player-timedtext")[0].getBoundingClientRect().width)*.025; //Original text is placed at Left:5%, using .right on original subs wasn't consistent
 
+    // (console.log(window));
     window.cleared=1; //Only takes new subs on clear, necessary because subs are constantly refreshed 
 
-    window.config = { attributes: true, childList: true, subtree:true,attributeFilter: [ "style"]};
+    window.config = { attributes: true, childList: true, subtree: true }; //attributeFilter:[ "style"]
 
     window.old_text = "";
 
     const callback = function (mutationsList, observer) { //Observes original text box for changes
+
+        // console.log('observer callback function working');
+        // console.log(mutationsList);
+
         for (const mutation of mutationsList) {
-            if (mutation.type === 'childList' && mutation.target.className && mutation.target.className === "player-timedtext") { //track removal/addition to subtitle container
 
-                if (mutation.addedNodes.length === 1) { //If added rather than removed..
-                    console.log("Observer obsered something")
+            // console.log ('mutation of mutuation list working');
+            // console.log(mutation);
 
+            
+            // mutation.type === 'childList', because Netflix will add subs by appending a child to the player-timed-text
+            if (mutation.type === 'childList' && mutation.target.className === "player-timedtext") { //track removal/addition to subtitle container
+                
+                
+                if (mutation.addedNodes.length === 1) { //If the player-timedtext-text-container is added (element which houses the subs)
+                    // console.log("Observer observed something")
+                    
+                    
                     if (mutation.target.innerText !== window.old_text) {
                         //I added this functionality last but it's much better than the clear flag, eventually i'll make this the only way to trigger a sub update,
                         //but for now I'll just make it support the current clear flag functionality
+                        
+                        // mutation.target.innerText gives us access to the subs (BOTH LINES!)
                         window.old_text = mutation.target.innerText;
                         window.cleared = 1;
                         console.log("Sub changed detected");
+
+                        console.log(mutation.target.innerText);
+                        
+                        mySubs.innerHTML = mutation.target.innerText;
+
+                        // this.disconnect(); //stop observer so I can add subs without triggering this infinitely
                     }
-                    this.disconnect(); //stop observer so I can add subs without triggering this infinitely
+
+
 
                 }
                 // else{
@@ -263,7 +254,7 @@ function createNewSubContainer(){
 
     window.observer = new MutationObserver(callback);
     window.observer.observe(timedtext,window.config);
-}
+} //end of createNewSubContainer function
 
 
 
