@@ -1,13 +1,13 @@
-// //track on-off toggling for dual subtitles
-// chrome.storage.sync.get('on_off', function (data) {
-//     if (data.on_off != null) {
-//         console.log("Preferences: on_off : " + data.on_off + " this is working!");
-//     }
-//     else {
-//         console.log("data is null");
-//         chrome.storage.sync.set({ 'on_off': 1 });
-//     }
-// });
+//track on-off toggling for dual subtitles
+chrome.storage.sync.get('on_off', function (data) {
+    if (data.on_off != null) {
+        console.log("Preferences: on_off : " + data.on_off + " this is working!");
+    }
+    else {
+        console.log("data is null");
+        chrome.storage.sync.set({ 'on_off': false});
+    }
+});
 
 
 chrome.runtime.onMessage.addListener(
