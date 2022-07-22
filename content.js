@@ -4,10 +4,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     
     // if (request.message === "update_on_off" || request.message === "update_font_size") {
     if (request.message === "update_on_off") {
+        // setting window.on_off to be true of false based on the update_on_off value from user
         window.on_off = request.value;
         console.log(window.on_off);
+
         if(window.on_off){
-            on_off_click = true
+            on_off_click = true;
             createNewSubContainer(on_off_click)
             console.log("Called Sub Container")
         } else {
@@ -26,51 +28,9 @@ function deleteSubContainer(){
     mySubContainer.remove();
     // mutationObserver.disconnect();
     // Disconnect the observer
-
 }
-// subElement = () => {
-//     // console.log('observer working');
-//     callback = () => {
-//         // console.log('hi, subElement observer is working!')
-//         const textContainer = document.querySelector('.player-timedtext-text-container');
-//         const textContainerSpan = textContainer.firstChild;
-//         const textContainerSpan1 = textContainerSpan.firstChild;
-//         const textContainerSpan2 = textContainerSpan1.nextSibling;
-
-//         const subsLine1 = textContainerSpan1.innerText;
-//         // const subsLine2 = textContainerSpan2.innerText;
-
-//         // textContainerSpan1.style.color = "red";
-
-//         // can't seem to get all the subtitle text to show up consistently=
-//         console.log(subsLine1);
-//         // console.log("hi", subsLine2);
-//         // if (textContainerSpan1 && textContainerSpan2) {
-//         //     console.log(subsLine1, subsLine2);
-//         // } else if (subsLine1) {
-//         // console.log(subsLine1);
-//         // } 
-//     }
-    
-//     const subContainer = document.querySelector(".player-timedtext");
-//     window.observer = new MutationObserver(callback);
-//     window.observer.observe(subContainer, {
-//         childList: true,
-//         attributes: false,
-//         // attributeFilter: ["style"],
-//         subtree: true 
-//     });
-// }
 
 
-
-const gettingFormSettings = function(setting) {
-    chrome.storage.sync.get(setting, function(data) {
-        if (setting === "font_size") {
-            window.font_size = data[setting];
-        }
-    })
-}
 
 // Function to create a subtitle container that holds the second pair of subtitles
 function createNewSubContainer(on_off_click){
@@ -149,13 +109,13 @@ function createNewSubContainer(on_off_click){
     divy.style.textAlign = "center"
     divy.style.position = "absolute"
     // divy.style.border = "1px solid yellow"
-    divy.style.fontSize = "50px"
+    // divy.style.fontSize = "50px"
     // divy.style.top = "80px"
     // divy.style.height = "100px"; 
 
 
     // (console.log(window));
-    window.cleared=1; //Only takes new subs on clear, necessary because subs are constantly refreshed 
+    window.cleared = 1; //Only takes new subs on clear, necessary because subs are constantly refreshed 
 
     window.config = { attributes: true, childList: true, subtree: true }; //attributeFilter:[ "style"]
 
@@ -204,26 +164,26 @@ function createNewSubContainer(on_off_click){
 
             }
 
-            else if (window.on_off && mutation.type === 'attributes' && mutation.target.className === "player-timedtext" && mutation.target.firstChild && mutation.target.style.inset != window.old_inset) { //For adjusting subtitle style when window is resized
+            // else if (window.on_off && mutation.type === 'attributes' && mutation.target.className === "player-timedtext" && mutation.target.firstChild && mutation.target.style.inset != window.old_inset) { //For adjusting subtitle style when window is resized
 
-                //Netflix constantly refreshes the text so I have to constantly reapply them
-                const caption_row = document.getElementsByClassName("player-timedtext")[0];
-                var container_count = caption_row.childElementCount;
-                if (container_count == 2) {
-                    console.log("combine container")
-                    // Why work around Netflix sometimes using a seperate container for each row when I can just force it back into using one.. wish I'd done this earlier
-                    document.getElementsByClassName('player-timedtext-text-container')[0].firstChild.innerText = document.getElementsByClassName('player-timedtext-text-container')[0].firstChild.innerText + '\n ' + document.getElementsByClassName("player-timedtext-text-container")[1].firstChild.innerText;
+            //     //Netflix constantly refreshes the text so I have to constantly reapply them
+            //     const caption_row = document.getElementsByClassName("player-timedtext")[0];
+            //     const container_count = caption_row.childElementCount;
+            //     if (container_count == 2) {
+            //         console.log("combine container")
+            //         // Why work around Netflix sometimes using a seperate container for each row when I can just force it back into using one.. wish I'd done this earlier
+            //         document.getElementsByClassName('player-timedtext-text-container')[0].firstChild.innerText = document.getElementsByClassName('player-timedtext-text-container')[0].firstChild.innerText + '\n ' + document.getElementsByClassName("player-timedtext-text-container")[1].firstChild.innerText;
 
-                    //removes sub
-                    const netflixElement = document.getElementsByClassName('player-timedtext-text-container')
-                    netflixElement.remove();
+            //         //removes sub
+            //         const netflixElement = document.getElementsByClassName('player-timedtext-text-container')
+            //         netflixElement.remove();
 
-                    // $('.player-timedtext-text-container')[1].remove();    
-                    container_count = 0;
-                }
+            //         // $('.player-timedtext-text-container')[1].remove();    
+            //         container_count = 0;
+            //     }
 
 
-            }
+            // }
             
         }
         

@@ -1,5 +1,4 @@
 // to save the input value of the radio buttons to adjust the sizing for subtitles
-
 document.addEventListener('DOMContentLoaded', function () {
     
     const inputSize = document.querySelectorAll("input[name=subSize]");
