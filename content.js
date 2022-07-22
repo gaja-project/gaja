@@ -147,7 +147,7 @@ function createNewSubContainer(on_off_click){
 
     mySubs.style.height = "100px";
     // mySubs.style.bottom = "0px";
-    mySubs.style.top = "420px"
+    // mySubs.style.top = "420px"
     mySubs.style.width = "100%";
     // mySubs.style.border = "1px solid green";
     mySubs.style.display = "flex";
