@@ -80,7 +80,7 @@ function createNewSubContainer(on_off_click){
     const timedtext = document.getElementsByClassName(id)[0];
 
     // Set translate to no, that way both subtitles container don't translate to english
-    // timedtext.setAttribute('translate', 'no');
+    timedtext.setAttribute('translate', 'no');
 
     // Create container and append it to Netflix's watch video class, this container also houses the original subtitle container
     const videoContainer = document.querySelector('.watch-video');
