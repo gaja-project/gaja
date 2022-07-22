@@ -17,16 +17,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         }
         // createNewSubContainer()
     }
-        // // trying to get access to the font_size value that's been saved onto chrome.storage and changing it to be the user's chosen setting
-        // chrome.storage.sync.get('font_size', function (data) {
-        //         console.log("Stored font value is: ", data.font_size);
 
-                // subSize = data.font_size;
-                // changeSubSize(data.font_size);
-        // };
-
-    // console.log('hello');
-    // // createNewSubContainer();
 });
 
 
@@ -107,40 +98,18 @@ function createNewSubContainer(on_off_click){
 
 
     // Changing default styling of p tag
-    mySubs.style.margin = "0"
+    mySubs.style.margin = "0";
+    mySubs.style.fontSize = "36px";
 
-    // Styling for divy element
-    divy.style.width = "100vw"
-    divy.style.display = "block"
-    divy.style.whiteSpace = "pre-wrap"
-    divy.style.textAlign = "center"
-    divy.style.position = "absolute"
-    divy.style.border = "10px solid yellow"
-    divy.style.fontSize = "50px"
-    divy.style.top = "80px"
-    divy.style.height = "100px";
-    // console.log("Container working")
+    const boundingContainer = document.querySelector('.player-timedtext-text-container');
+    // console.log(boundingContainer.getBoundingClientRect().height);
 
+    // Gets original sub placement attributes and then using them to position our subtitle container element (divy)
+    window.subs_placement_height = parseInt(boundingContainer.getBoundingClientRect().height);
+    window.subs_placement_y = parseInt(boundingContainer.getBoundingClientRect().y);
+    window.subs_placement_x = parseInt(boundingContainer.getBoundingClientRect().x);
+    window.subs_placement_bottom = parseInt(boundingContainer.getBoundingClientRect().bottom); 
 
-    // this code here needs to be dynamic
-    // Gets original sub placement attributes
-    window.original_subs_placement_height = parseInt(timedtext.getBoundingClientRect().height); 
-    // window.original_subs_placement_y = parseInt(timedtext.getBoundingClientRect().y); 
-    window.original_subs_placement_bottom = parseInt(timedtext.getBoundingClientRect().bottom); 
-    // divy.style.height = original_subs_placement_height + "px";
-    // divy.style.top = original_subs_placement_bottom +'px';
-
-
-
-    // window.old_inset = timedtext.style.inset;
-    // window.original_subs_placement = parseInt(document.getElementsByClassName("player-timedtext")[0].getBoundingClientRect().width)*.025; //Original text is placed at Left:5%, using .right on original subs wasn't consistent
-
-    // (console.log(window));
-    window.cleared=1; //Only takes new subs on clear, necessary because subs are constantly refreshed 
-
-    window.config = { attributes: true, childList: true, subtree: true }; //attributeFilter:[ "style"]
-
-    window.old_text = "";
     mySubs.style.position = "relative";
     // mySubs.style.height = subs_placement_height + "px";
     // mySubs.style.bottom = subs_placement_y + 10 + "px";
@@ -155,19 +124,18 @@ function createNewSubContainer(on_off_click){
     mySubs.style.justifyContent = "center";
 
 
-    
     window.original_subs_placement_height = parseInt(timedtext.getBoundingClientRect().height);
     window.original_subs_placement_width = parseInt(timedtext.getBoundingClientRect().width);
     window.original_subs_placement_y = parseInt(timedtext.getBoundingClientRect().y);
     window.original_subs_placement_x = parseInt(timedtext.getBoundingClientRect().x);
-    window.original_subs_placement_bottom = parseInt(timedtext.getBoundingClientRect().bottom); 
-    
-    console.log(timedtext.getBoundingClientRect().height)
+    window.original_subs_placement_bottom = parseInt(timedtext.getBoundingClientRect().bottom);
+
+    // console.log(timedtext.getBoundingClientRect().height);
 
     // divy.style.height = original_subs_placement_height + "px";
     // divy.style.bottom = original_subs_placement_y + "px";
-    // divy.style.height = original_subs_placement_height + "px";
-    divy.style.height = "510px";
+    divy.style.height = original_subs_placement_height + "px";
+    // divy.style.height = "100%";
     divy.style.width = original_subs_placement_width + "px";
     divy.style.top = original_subs_placement_y + "px";
     divy.style.left = original_subs_placement_x + "px";
@@ -185,6 +153,14 @@ function createNewSubContainer(on_off_click){
     // divy.style.top = "80px"
     // divy.style.height = "100px"; 
 
+
+    // (console.log(window));
+    window.cleared=1; //Only takes new subs on clear, necessary because subs are constantly refreshed 
+
+    window.config = { attributes: true, childList: true, subtree: true }; //attributeFilter:[ "style"]
+
+    window.old_text = "";
+    
 
     const callback = function (mutationsList, observer) { //Observes original text box for changes
         // console.log('observer callback function working');
@@ -224,22 +200,7 @@ function createNewSubContainer(on_off_click){
                         // this.disconnect(); //stop observer so I can add subs without triggering this infinitely
                     }
 
-
-
                 }
-                // else{
-
-                //     // if (mutation.target.childElementCount===0){ //No children means the mutation was a subtitle CLEAR rather than refresh, double check necessary because refresh would make it here as well but with children (..i think? I forget at this point)
-
-                //     //     window.cleared=1;
-                //     //     // document.getElementsByClassName('my-timedtext-container')[0].innerText = "";
-                //     //     // window.last_subs="";
-
-
-                //     // }
-                //     //window.my_timedtext_element.innerText = "";
-
-                // }
 
             }
 
@@ -260,31 +221,6 @@ function createNewSubContainer(on_off_click){
                     // $('.player-timedtext-text-container')[1].remove();    
                     container_count = 0;
                 }
-
-
-                // window.baseFont = parseFloat(mutation.target.firstChild.firstChild.firstChild.style.fontSize.replace('px','')); //font size changes way more often than on nrk so will take basefont after every clear instead (if inset updates, update this as well)
-                // window.current_size = window.baseFont*window.current_multiplier+'px';
-                // update_style('font_size');
-                //update_style('originaltext_opacity');
-                //update_style('originaltext_color');
-
-
-                // if (window.original_text_side == 0) {
-
-                //     console.log("0");
-                //     // Match sub placement data and applies it to my timed text container
-                //     window.original_subs_placement = parseInt(document.getElementsByClassName("player-timedtext")[0].getBoundingClientRect().x) + (parseInt(document.getElementsByClassName("player-timedtext")[0].getBoundingClientRect().width) * .025);
-                //     var sub_dist = (parseInt(document.getElementsByClassName("player-timedtext")[0].firstChild.getBoundingClientRect().width) + (window.original_subs_placement) + 10);
-                //     window.my_timedtext_element.style['left'] = sub_dist + 'px';
-
-                // }
-                // else {
-                //     console.log("1");
-                //     // Matches my timed text container ???
-                //     window.original_subs_placement = parseInt(divy.getBoundingClientRect().x) + parseInt(divy.getBoundingClientRect().width);
-                //     var sub_dist = (window.original_subs_placement) + 10 - parseInt(document.getElementsByClassName("player-timedtext")[0].getBoundingClientRect().x);
-                //     document.getElementsByClassName("player-timedtext")[0].firstChild.style['left'] = sub_dist + 'px';
-                // }
 
 
             }
