@@ -16,6 +16,7 @@ chrome.runtime.onMessage.addListener(
         // keeping track of if dual subs is turned on or not
         if (request.message === "update_on_off") {
 
+            console.log(request.value);
             console.log("Background.js recieved message from SUBTITLE to update on_off to " + request.value);
 
             //Store into chrome using chrome.storage API
