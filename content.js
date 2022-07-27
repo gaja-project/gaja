@@ -6,7 +6,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         
         // Calls functions to create a dual subtitle container
         window.on_off = request.value;
-        if(window.on_off){
+        if (window.on_off) {
             createNewSubContainer();
             console.log("Called Sub Container")
         } else {
@@ -14,7 +14,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             console.log("Removed Sub container");
         }
     }
-
+    
 });
 
 
@@ -160,5 +160,3 @@ function createNewSubContainer(){
     window.observer.observe(timedtext, window.config);
 
 } //end of createNewSubContainer function
-
-
