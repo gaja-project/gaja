@@ -85,6 +85,6 @@ Gaja uses javascript and css to operate and display its popup window.
 Meet the Gaja ![image](/icons/icon16.png) Team!
 | ![image](/icons/icon48.png)|![image](/icons/icon48.png)| ![image](/icons/icon48.png)| ![image](/icons/icon48.png)|
 | :---: | :---: | :---: | :---: |
-| **Jay** | **Yovonne** | **Sophie** | **Jose Salazar Mendez** |
+| **Taylor** | **Yovonne** | **Sophie** | **Jose Salazar Mendez** |
 | *Product Manager* | *Product Designer* | *Developer* | *Developer* |
-| <email@example.com> | <email@example.com>| <email@example.com>| <hose153@gmail.com>|
+| <taylor@taylorjoyce.io> | <email@example.com>| <email@example.com>| <hose153@gmail.com>|
