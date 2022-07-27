@@ -138,8 +138,8 @@ function createNewSubContainer(){
                         window.old_text = mutation.target.innerText;
                         window.cleared = 1;
 
-                        console.log("Sub changed detected");
-                        console.log(mutation.target.innerText);
+                        // console.log("Sub changed detected");
+                        // console.log(mutation.target.innerText);
                         
                         // Set the subtitle data to our subtitle container
                         mySubs.innerHTML = mutation.target.innerText;
