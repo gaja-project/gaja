@@ -4,35 +4,45 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     
     // if (request.message === "update_on_off" || request.message === "update_font_size") {
     if (request.message === "update_on_off") {
-        // setting window.on_off to be true of false based on the update_on_off value from user
-        window.on_off = request.value;
 
+        // Window.on_off will be true or false based on the update_on_off value from user
+        // Calls functions to create a dual subtitle container
+        window.on_off = request.value;
         if(window.on_off){
-            // createNewSubContainer()
+            createNewSubContainer();
             console.log("Called Sub Container")
         } else {
-
-            console.log("Removed sub container")
+            removeSubContainer()
+            console.log("Removed Sub container");
         }
-        // createNewSubContainer()
     }
 
 });
 
 
-function deleteSubContainer(){
+// Function to stop the observer and remove the subtitle container
+function removeSubContainer(){
+    window.observer.disconnect();
+
+    // Select container to be removed. getElement by class name does not work for this case
     const mySubContainer = document.querySelector('.my-timed-text-container');
-    mySubContainer.remove();
-    // mutationObserver.disconnect();
-    // Disconnect the observer
+    mySubContainer.remove()
 }
 
+
+const gettingFormSettings = function(setting) {
+    chrome.storage.sync.get(setting, function(data) {
+        if (setting === "font_size") {
+            window.font_size = data[setting];
+        }
+    })
+}
 
 
 // Function to create a subtitle container that holds the second pair of subtitles
 function createNewSubContainer(){
 
-    // Get orignal container
+    // Get Netflix's container
     const id = "player-timedtext";
     const timedtext = document.getElementsByClassName(id)[0];
 
@@ -47,12 +57,11 @@ function createNewSubContainer(){
     // Set our subtitle container to be able to use right click translate feature
     divy.setAttribute('translate', 'yes');
 
+    // TODO Create a function to style container
     // Create a p container to hold subtitle data
     videoContainer.appendChild(divy);
     const mySubs = document.createElement('p');
     divy.appendChild(mySubs);
-    // p.innerHTML = "hello world"
-
 
     // Changing default styling of p tag
     mySubs.style.margin = "0";
@@ -98,7 +107,6 @@ function createNewSubContainer(){
     divy.style.left = original_subs_placement_x + "px";
     divy.style.bottom = original_subs_placement_bottom + "px";
 
-
     // styling for divy element
     // divy.style.width = "100vw"
     divy.style.display = "block"
@@ -110,86 +118,49 @@ function createNewSubContainer(){
     // divy.style.top = "80px"
     // divy.style.height = "100px"; 
 
-
-    // (console.log(window));
     window.cleared = 1; //Only takes new subs on clear, necessary because subs are constantly refreshed 
-
     window.config = { attributes: true, childList: true, subtree: true }; //attributeFilter:[ "style"]
-
     window.old_text = "";
     
-
-    const callback = function (mutationsList, observer) { //Observes original text box for changes
-        // console.log('observer callback function working');
-        // console.log(mutationsList);
+    // This callback function operates the observer by observing node changes
+    const callback = function (mutationsList, observer) {
 
         for (const mutation of mutationsList) {
-            // console.log ('mutation of mutuation list working');
-            // console.log(mutation);
 
             // to keep track of changes in where the subtitles are from Netflix, and then adjusting our subtitles to sit right above the container
             if (mutation.target.className === "player-timedtext-text-container") {
-                // console.log(mutation.target.clientHeight, mutation.target.offsetTop);
-                // console.log(mutation.target);
-                // console.log(mutation);
-
                 mySubs.style.top = (mutation.target.offsetTop - 110) + "px";
             }
 
             // mutation.type === 'childList', because Netflix will add subs by appending a child to the player-timed-text
-            if (mutation.type === 'childList' && mutation.target.className === "player-timedtext") { //track removal/addition to subtitle container
+            if (mutation.type === 'childList' && mutation.target.className === "player-timedtext") {
                 
-                
-                if (mutation.addedNodes.length === 1) { //If the player-timedtext-text-container is added (element which houses the subs)
-                    // console.log("Observer observed something")
+                if (mutation.addedNodes.length === 1) {
                     
                     if (mutation.target.innerText !== window.old_text) {
                         
                         // mutation.target.innerText gives us access to the subs (BOTH LINES!)
                         window.old_text = mutation.target.innerText;
                         window.cleared = 1;
-                        console.log("Sub changed detected");
 
+                        console.log("Sub changed detected");
                         console.log(mutation.target.innerText);
                         
+                        // Set the subtitle data to our subtitle container
                         mySubs.innerHTML = mutation.target.innerText;
-                        // this.disconnect()
+                
+                        // Disconnect?? 
                         // this.disconnect(); //stop observer so I can add subs without triggering this infinitely
                     }
-
                 }
-
-            }
-
-            // else if (window.on_off && mutation.type === 'attributes' && mutation.target.className === "player-timedtext" && mutation.target.firstChild && mutation.target.style.inset != window.old_inset) { //For adjusting subtitle style when window is resized
-
-            //     //Netflix constantly refreshes the text so I have to constantly reapply them
-            //     const caption_row = document.getElementsByClassName("player-timedtext")[0];
-            //     const container_count = caption_row.childElementCount;
-            //     if (container_count == 2) {
-            //         console.log("combine container")
-            //         // Why work around Netflix sometimes using a seperate container for each row when I can just force it back into using one.. wish I'd done this earlier
-            //         document.getElementsByClassName('player-timedtext-text-container')[0].firstChild.innerText = document.getElementsByClassName('player-timedtext-text-container')[0].firstChild.innerText + '\n ' + document.getElementsByClassName("player-timedtext-text-container")[1].firstChild.innerText;
-
-            //         //removes sub
-            //         const netflixElement = document.getElementsByClassName('player-timedtext-text-container')
-            //         netflixElement.remove();
-
-            //         // $('.player-timedtext-text-container')[1].remove();    
-            //         container_count = 0;
-            //     }
-
-
-            // }
-            
-        }
-        
+            }           
+        }       
     };
 
+    // Create our observer that uses our callback function
     window.observer = new MutationObserver(callback);
-    window.observer.observe(timedtext,window.config);
+    window.observer.observe(timedtext, window.config);
 
 } //end of createNewSubContainer function
-
 
 
