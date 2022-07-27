@@ -21,7 +21,7 @@ Gaja is a chrome extension that adds the functionality to have seperate subtitle
 A link to our figma product design can be found [here](https://www.figma.com/file/Aieb6PwV3zMtLbCo84cK3E/Gaja---Language-learning?node-id=851%3A2010).
 Some features that have not yet been implemented can also be found on the figma as well.
 
-## 📺 Screenshots
+## 📺Screenshots
 A pitch of our product can be found [here](https://pitch.com/v/gaja-fx3hh6).
 
 Our current deployment of Gaja looks like this.
@@ -57,7 +57,7 @@ figma linked in the [design](#🎨-Design) section.
 <!-- ### Features in development -->
 
 
-## 📙 How to use
+## 📙How to use
 To get started, install the extension from the chrome web store 📥.
 (Add gif here)
  
@@ -75,12 +75,12 @@ You should now be able to see two seperate subtitles. Right click 🖱 the new s
 
 That is it! 🎉 Easy right? You can customize your experience with other features from the gaja dropdown!
 Happy learning!🍿🎓
-## 🔨 Development
+## 🔨Development
 
 Gaja uses javascript and css to operate and display its popup window.
 
 
-## ⭐️ Team
+## ⭐️Team
 
 Meet the Gaja ![image](/icons/icon16.png) Team!
 | ![image](/icons/icon48.png)|![image](/icons/icon48.png)| ![image](/icons/icon48.png)| ![image](/icons/icon48.png)|
