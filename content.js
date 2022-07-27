@@ -52,12 +52,12 @@ function createNewSubContainer(){
     // Set our subtitle container to be able to use right click translate feature
     divy.setAttribute('translate', 'yes');
 
-    // TODO Create a function to style container
+
     // Create a p container to hold subtitle data
     videoContainer.appendChild(divy);
     const mySubs = document.createElement('p');
     divy.appendChild(mySubs);
-
+    
     // Changing default styling of p tag
     mySubs.style.margin = "0";
     mySubs.style.fontSize = "25px";
@@ -157,6 +157,10 @@ function createNewSubContainer(){
     window.observer.observe(timedtext, window.config);
 
 } //end of createNewSubContainer function
+
+function stylingContainer(container){
+
+}
 
 const fontSizeUpdate = function(size) {
     const subtitles = document.querySelector(".my-timed-text-container");

@@ -10,7 +10,7 @@ Gaja is a chrome extension that helps you learn a new language just by watching 
 - [Features](#-Features)
 - [How to use](#-How-to-use)
 - [Development](#-Development)
-- [Team](#-Team)
+- [Team](#%EF%B8%8F-team)
 ***
 ## 📝 Overview
 Gaja was created by a team of language learners who wanted the ability to enhace they way they could learn. Through [Co.lab](https://www.joincolab.io), they created and [pitched](https://pitch.com/v/gaja-fx3hh6) a product that could not only help them, but others as well!
