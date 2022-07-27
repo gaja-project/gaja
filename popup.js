@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         chrome.runtime.sendMessage({
             "message": "update_on_off",
-            "value": this.checked
+            "value": this.unchecked
         });
     });
 

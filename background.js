@@ -33,13 +33,6 @@ chrome.runtime.onMessage.addListener(
             });
         }
         
-        if (request.message === "update_font_size") {
-            // console.log(request.value);
-            window.font_size = request.value;
-    
-            fontSizeUpdate(window.font_size);
-        }
-
         // keeping track of subtitle size
         // if (request.message === "update_font_size") {
 
