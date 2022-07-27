@@ -6,15 +6,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.message === "update_on_off") {
         // setting window.on_off to be true of false based on the update_on_off value from user
         window.on_off = request.value;
-        console.log(window.on_off);
 
         if(window.on_off){
-            on_off_click = true;
-            createNewSubContainer(on_off_click)
+            // createNewSubContainer()
             console.log("Called Sub Container")
         } else {
-            on_off_click = false
-            createNewSubContainer(on_off_click)
+
             console.log("Removed sub container")
         }
         // createNewSubContainer()
@@ -33,7 +30,7 @@ function deleteSubContainer(){
 
 
 // Function to create a subtitle container that holds the second pair of subtitles
-function createNewSubContainer(on_off_click){
+function createNewSubContainer(){
 
     // Get orignal container
     const id = "player-timedtext";
@@ -192,12 +189,6 @@ function createNewSubContainer(on_off_click){
     window.observer = new MutationObserver(callback);
     window.observer.observe(timedtext,window.config);
 
-    if(on_off_click){
-        const mySubContainer = document.querySelector('.my-timed-text-container');
-        mySubContainer.remove();
-        window.observer.disconnect()
-        console.log("off")
-    }
 } //end of createNewSubContainer function
 
 
