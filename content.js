@@ -8,22 +8,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         console.log(window.on_off);
         if(window.on_off){
             createNewSubContainer();
-            try{
-                window.my_timed_text_container.style['display']='block';
-            }
-            catch(e){
-                console.log(e)
-            }
             console.log("Called Sub Container")
         } else {
-            // try {
-            //     document.getElementsByClassName("my-timed-text-container")
-            // } catch(e){
-            //     console.log(e)
-            // }
-            const mySubContainer = document.querySelector('.my-timed-text-container');
-            mySubContainer.style.display = "none";
-            window.observer.disconnect();
+            removeSubContainer()
             console.log("Removed sub container");
         }
     }
@@ -31,12 +18,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 
 
-function deleteSubContainer(){
+function removeSubContainer(){
+    window.observer.disconnect();
     const mySubContainer = document.querySelector('.my-timed-text-container');
-    mySubContainer.remove();
-    // mutationObserver.disconnect();
-    // Disconnect the observer
-
+    mySubContainer.remove()
 }
 
 
