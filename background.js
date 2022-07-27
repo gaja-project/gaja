@@ -32,24 +32,30 @@ chrome.runtime.onMessage.addListener(
                 
             });
         }
+        
+        if (request.message === "update_font_size") {
+            // console.log(request.value);
+            window.font_size = request.value;
+    
+            fontSizeUpdate(window.font_size);
+        }
 
         // keeping track of subtitle size
-        if (request.message === "update_font_size") {
+        // if (request.message === "update_font_size") {
 
-            console.log("Background.js recieved message from SUBSIZE to update font size to " + request.value);
+        //     console.log("Background.js recieved message from SUBSIZE to update font size to " + request.value);
 
             
-            //Store into local variables
-            chrome.storage.sync.set({ 'font_size': request.value });           
+        //     //Store into local variables
+        //     chrome.storage.sync.set({ 'font_size': request.value });           
 
-            chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) { //Pass message onto Content.js
-                chrome.tabs.sendMessage(tabs[0].id, {
-                    "message": "update_font_size",
-                    "value": request.value
-                });
-            });
+        //     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) { //Pass message onto Content.js
+        //         chrome.tabs.sendMessage(tabs[0].id, {
+        //             "message": "update_font_size",
+        //             "value": request.value
+        //         });
+        //     });
 
-        }
     }
 );
 

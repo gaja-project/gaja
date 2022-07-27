@@ -160,3 +160,16 @@ function createNewSubContainer(){
     window.observer.observe(timedtext, window.config);
 
 } //end of createNewSubContainer function
+
+const fontSizeUpdate = function(size) {
+
+    // const textContainer = document.querySelector(".player-timedtext");
+    const subtitles = document.querySelector(".my-timed-text-container");
+
+    const mySubs = subtitles.querySelector('p');
+
+    // console.log(mySubs);
+    mySubs.style.fontSize = size + "px";
+
+
+}
