@@ -15,6 +15,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         }
     }
     
+    if (request.message === "update_font_size") {
+        // console.log(request.value);
+        window.font_size = request.value;
+
+        fontSizeUpdate(window.font_size);
+    }
 });
 
 
@@ -25,15 +31,6 @@ function removeSubContainer(){
     // Select container to be removed. getElement by class name does not work for this case
     const mySubContainer = document.querySelector('.my-timed-text-container');
     mySubContainer.remove()
-}
-
-
-const gettingFormSettings = function(setting) {
-    chrome.storage.sync.get(setting, function(data) {
-        if (setting === "font_size") {
-            window.font_size = data[setting];
-        }
-    })
 }
 
 
@@ -63,7 +60,7 @@ function createNewSubContainer(){
 
     // Changing default styling of p tag
     mySubs.style.margin = "0";
-    mySubs.style.fontSize = "36px";
+    mySubs.style.fontSize = "25px";
 
     const boundingContainer = document.querySelector('.player-timedtext-text-container');
     // console.log(boundingContainer.getBoundingClientRect().height);
@@ -162,14 +159,10 @@ function createNewSubContainer(){
 } //end of createNewSubContainer function
 
 const fontSizeUpdate = function(size) {
-
-    // const textContainer = document.querySelector(".player-timedtext");
     const subtitles = document.querySelector(".my-timed-text-container");
 
     const mySubs = subtitles.querySelector('p');
 
     // console.log(mySubs);
     mySubs.style.fontSize = size + "px";
-
-
 }
