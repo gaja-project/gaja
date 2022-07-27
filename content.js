@@ -1,11 +1,8 @@
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-
-    // console.log('the on/off button has been interacted with!', request.message);
     
     // Window.on_off will be true or false based on the update_on_off value from user
     // if (request.message === "update_on_off" || request.message === "update_font_size") {
     if (request.message === "update_on_off") {
-
         
         // Calls functions to create a dual subtitle container
         window.on_off = request.value;
