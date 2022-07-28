@@ -55,6 +55,7 @@ function createNewSubContainer(){
 
     // Create container and append it to Netflix's watch video class, this container also houses the original subtitle container
     const videoContainer = document.querySelector('.watch-video');
+
     const divy = document.createElement('div');
     divy.className = "my-timed-text-container";
 
@@ -72,21 +73,25 @@ function createNewSubContainer(){
     window.cleared = 1; //Only takes new subs on clear, necessary because subs are constantly refreshed 
     window.config = { attributes: true, childList: true, subtree: true }; //attributeFilter:[ "style"]
     window.old_text = "";
-    window.old_inset = timedtext.style.inset;
+
+    // Inset changes with window size
+    // window.old_inset = timedtext.style.inset;
     // This callback function operates by observing node changes
+
     const callback = function (mutationsList, observer) {
 
         for (const mutation of mutationsList) {
+
+            // to keep track of changes in where the subtitles are from Netflix, and then adjusting our subtitles to sit right above the container
+            if (mutation.target.className === "player-timedtext-text-container") {
+                mySubs.style.top = (mutation.target.offsetTop - 75) + "px";
+                // console.log((mutation.target))
+            }
 
             // mutation.type === 'childList', because Netflix will add subs by appending a child to the player-timed-text
             if (mutation.type === 'childList' && mutation.target.className === "player-timedtext") {
                 
                 if (mutation.addedNodes.length === 1) {
-
-                    // to keep track of changes in where the subtitles are from Netflix, and then adjusting our subtitles to sit right above the container
-                    if (mutation.target.className === "player-timedtext-text-container") {
-                        mySubs.style.top = (mutation.target.offsetTop - 110) + "px";
-                    }
                     
                     if (mutation.target.innerText !== window.old_text) {
                         
@@ -102,20 +107,14 @@ function createNewSubContainer(){
                         mySubs.innerHTML = mutation.target.innerText;
                 
                     }
-                    // if (netTimedtext.style.display === "none") {
-                    //     console.log("no subs");
 
-                    // }
-                } else {
+                } else if (mutation.target.childElementCount === 0) { 
 
                     // No children means the mutation was a subtitle CLEAR rather than refresh, double check necessary because refresh would make it here as well but with children
                     // Mutation checks to see if there is any change to the element, if none, then remove the subs
-                    if (mutation.target.childElementCount === 0) { 
-                        window.cleared = 1;
-                        mySubs.innerText = "";
-                        window.last_subs = "";
-                    }
-
+                    window.cleared = 1;
+                    mySubs.innerText = "";
+                    window.last_subs = "";
                 }
 
             } 
@@ -177,11 +176,11 @@ function stylingContainer(newDiv, pTag, netflixTimedtext){
     pStyle.margin = "0";
     pStyle.fontSize = "25px";
 
-    pStyle.border = "1px solid yellow";
+    // pStyle.border = "1px solid yellow";
 
     // Style our p tag
     pStyle.position = "relative";
-    pStyle.height = "100px";
+    pStyle.height = "70px";
     pStyle.width = "100%";
     pStyle.display = "flex";
     pStyle.flexDirection = "row";
@@ -189,20 +188,28 @@ function stylingContainer(newDiv, pTag, netflixTimedtext){
 
     // Retrieve original container placement
     window.original_subs_placement_height = parseInt(netflixTimedtext.getBoundingClientRect().height);
-    // window.original_subs_placement_width = parseInt(netflixTimedtext.getBoundingClientRect().width);
+    window.original_subs_placement_width = parseInt(netflixTimedtext.getBoundingClientRect().width);
     window.original_subs_placement_y = parseInt(netflixTimedtext.getBoundingClientRect().y);
     window.original_subs_placement_x = parseInt(netflixTimedtext.getBoundingClientRect().x);
     window.original_subs_placement_bottom = parseInt(netflixTimedtext.getBoundingClientRect().bottom);
 
 
     // Style our container using the old container properties
-    // containerStyle.height = original_subs_placement_height + "px";
-    // containerStyle.width = original_subs_placement_width + "px";
-    containerStyle.height = "100px"
-    containerStyle.width = "100vh";
+    containerStyle.height = original_subs_placement_height + "px";
+    // containerStyle.height = "200px";
+    containerStyle.width = original_subs_placement_width + "px";
+    // containerStyle.width = "100vw";
     containerStyle.top = original_subs_placement_y + "px";
     containerStyle.left = original_subs_placement_x + "px";
     containerStyle.bottom = original_subs_placement_bottom + "px";
+
+    // // containerStyle.height = "80vh";
+    // // containerStyle.width =  "100vw";
+    // containerStyle.height = "100px"
+    // // containerStyle.width = "100vw";
+    // containerStyle.top = original_subs_placement_y + "px";
+    // // containerStyle.left = original_subs_placement_x + "px";
+    // containerStyle.bottom = original_subs_placement_bottom + "px";
 
     // Display block is important to make our container visible
     containerStyle.display = "block"
