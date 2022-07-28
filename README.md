@@ -164,7 +164,7 @@ Lastly in our `createNewSubContainer()` function we have our callback function t
     }
 ```
 
-## ⭐️ Team {#team}
+## [⭐️ Team](#team)
 
 Meet the Gaja ![image](/icons/icon16.png) Team!
 | ![image](/icons/icon48.png)|![image](/icons/icon48.png)| ![image](/icons/icon48.png)| ![image](https://scontent-sjc3-1.xx.fbcdn.net/v/t1.6435-9/192444196_2075868239228294_8536051389295001423_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=K4Q1auipGPMAX9UL7cj&_nc_ht=scontent-sjc3-1.xx&oh=00_AT8t9uUnJka_oOYKw56r0mMJSFi55ztTzr74tt3rrIObiQ&oe=6308A205)|
