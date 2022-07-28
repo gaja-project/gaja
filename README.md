@@ -154,15 +154,6 @@ Setting the container attribute to no is important because it allows one subtitl
     }
 ```
 Lastly in our `createNewSubContainer()` function we have our callback function that allows us to manage our container to any updates it observers from netflix's subtitle container.
-```js script
-    // Function to style our container, recieves our new div container, our p tag, and the netflix sub container
-    function stylingContainer(newDiv, pTag, netflixTimedtext){
-        // Set our subtitle container to be able to use right click translate feature by allowing it translate
-        newDiv.setAttribute('translate', 'yes');
-        
-        // Style code in here
-    }
-```
 
 ## [⭐️ Team](#team)
 
