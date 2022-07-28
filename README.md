@@ -91,26 +91,28 @@ Happy learning!🍿🎓
 
 Gaja's uses Html, CSS, and Javascript to get the job done 💪.
 
-> The popup contents can be found in the `popup.htlm` file. Here we create a form for user interaction.
+***
+The popup contents can be found in the `popup.htlm` file. Here we create a form for user interaction.
 ```html
     <form id="popup-form" class="container"> 
 ```
-> This form holds the buttons and toggles for user interaction. Currently this form only houses a on / off switch and the size selection radio buttons.
+This form holds the buttons and toggles for user interaction. Currently this form only houses a on / off switch and the size selection radio buttons.
 ***
-> The CSS to the popup window can be found in the `popup.css` file. This file is meant to only style the popup. This file does not do any subtitle modifications.
+The CSS to the popup window can be found in the `popup.css` file. This file is meant to only style the popup. This file does not do any subtitle modifications.
 ***
-> The script for the functionality of the popup window can be found in `background.js`. In here we add event listeners such as this
+The script for the functionality of the popup window can be found in `background.js`. In here we add event listeners such as this
 ```js script
     chrome.runtime.onMessage.addListener()
 ```
-> to check for any user input on the form and set the default variables for `content.js` to use. We can set then set these variables using: 
+to check for any user input on the form and set the default variables for `content.js` to use. We can set then set these variables using: 
 ```js script
     chrome.storage.sync.set()
 ```
-> which sets variable into chrome local storage. These vairables will then speak with our `content.js`.
+which sets variable into chrome local storage. These vairables will then speak with our `content.js`.
 ***
 
-> Our `content.js` holds our meat and potatoes. In here we have our dual subtitle and font sizing functionality. To start, our file holds a listener to check any user changes which should have been toggled by `background.js`. Once a user activates the dual subtitles, our first mission is to create a new container for these subtitles in our
+Our `content.js` holds our meat and potatoes. In here we have our dual subtitle and font sizing functionality. 
+To start, our file holds a listener to check any user changes which should have been toggled by `background.js`. Once a user activates the dual subtitles, our first mission is to create a new container for these subtitles in our
 ```js script
     // Creates a subtitle container
     function createNewSubContainer(){
@@ -130,7 +132,7 @@ Gaja's uses Html, CSS, and Javascript to get the job done 💪.
         window.observer.observe(timedtext, window.config);
     }
 ```
-> We also need netflix's container for reference which we get using 
+We also need netflix's container for reference which we get using 
 ```js script
     function getNetflixContainer(){
         const netflixEl = "player-timedtext";
@@ -141,7 +143,7 @@ Gaja's uses Html, CSS, and Javascript to get the job done 💪.
         return timedtext
     }
 ```
-> Setting the container attribute to no is important because it allows one subtitle container to remain the same while the other translates. Which leads us to the other function we call in our `createNewSubContainer()` function which is the `stylingContainer()` function. In here we style our new container using the netflix container as reference and we also style our p tag which exists in our new container.
+Setting the container attribute to no is important because it allows one subtitle container to remain the same while the other translates. Which leads us to the other function we call in our `createNewSubContainer()` function which is the `stylingContainer()` function. In here we style our new container using the netflix container as reference and we also style our p tag which exists in our new container.
 ```js script
     // Function to style our container, recieves our new div container, our p tag, and the netflix sub container
     function stylingContainer(newDiv, pTag, netflixTimedtext){
@@ -151,7 +153,7 @@ Gaja's uses Html, CSS, and Javascript to get the job done 💪.
         // Style code in here
     }
 ```
-> Lastly in our `createNewSubContainer()` function we have our callback function that allows us to manage our container to any updates it observers from netflix's subtitle container.
+Lastly in our `createNewSubContainer()` function we have our callback function that allows us to manage our container to any updates it observers from netflix's subtitle container.
 ```js script
     // Function to style our container, recieves our new div container, our p tag, and the netflix sub container
     function stylingContainer(newDiv, pTag, netflixTimedtext){
