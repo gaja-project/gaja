@@ -1,20 +1,19 @@
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     
     // Window.on_off will be true or false based on the update_on_off value from user
-    // if (request.message === "update_on_off" || request.message === "update_font_size") {
     if (request.message === "update_on_off") {
         
-        // Calls functions to create a dual subtitle container
+        // Calls functions to create a dual subtitle container or remove
         window.on_off = request.value;
         if (window.on_off) {
             createNewSubContainer();
-            console.log("Called Sub Container")
+            // console.log("Called Sub Container")
         } else {
             removeSubContainer()
-            console.log("Removed Sub container");
+            // console.log("Removed Sub container");
         }
     }
-    
+    // Sees if user has interacted with font size button change, and changes font size to request value
     if (request.message === "update_font_size") {
         // console.log(request.value);
         window.font_size = request.value;
@@ -36,13 +35,13 @@ function removeSubContainer(){
     }
 }
 
-// Get Netflix's container returns it for refrence 
+// Get Netflix's container returns it for reference 
 function getNetflixContainer(){
     // Get Netflix's container
     const netflixEl = "player-timedtext";
     const timedtext = document.getElementsByClassName(netflixEl)[0];
 
-    // Set translate to no, that way both subtitles container don't translate to english
+    // Set translate to no, that way both subtitles container don't translate to English
     timedtext.setAttribute('translate', 'no');
     return timedtext
 }
@@ -95,28 +94,23 @@ function createNewSubContainer(){
                         window.old_text = mutation.target.innerText;
                         window.cleared = 1;
 
-                        console.log("Sub changed detected");
-                        console.log(mutation.target.innerText);
+                        // console.log("Sub changed detected");
+                        // console.log(mutation.target.innerText);
                         
                         // Set the subtitle data to our subtitle container
                         mySubs.innerHTML = mutation.target.innerText;
                 
                     }
-                    // if (netTimedtext.style.display === "none") {
-                    //     console.log("no subs");
-
-                    // }
-                } else {
+                } else if (mutation.target.childElementCount === 0) { 
 
                     // No children means the mutation was a subtitle CLEAR rather than refresh, double check necessary because refresh would make it here as well but with children
                     // Mutation checks to see if there is any change to the element, if none, then remove the subs
-                    if (mutation.target.childElementCount === 0) { 
-                        window.cleared = 1;
-                        mySubs.innerText = "";
-                        window.last_subs = "";
-                    }
-
+                    window.cleared = 1;
+                    mySubs.innerText = "";
+                    window.last_subs = "";
                 }
+
+                
 
             } 
             // else if (mutation.target.style.inset != window.old_inset){ //For adjusting subtitle style when window is resized
