@@ -118,29 +118,30 @@ function createNewSubContainer(){
 
                 }
 
-            } else if (mutation.target.style.inset != window.old_inset){ //For adjusting subtitle style when window is resized
+            } 
+            // else if (mutation.target.style.inset != window.old_inset){ //For adjusting subtitle style when window is resized
                 
-                //Netflix constantly refreshes the text so I have to constantly reapply them
-                const caption_row = document.getElementsByClassName("player-timedtext")[0];                
+            //     //Netflix constantly refreshes the text so I have to constantly reapply them
+            //     const caption_row = document.getElementsByClassName("player-timedtext")[0];                
 
-                //font size changes way more often than on nrk so will take basefont after every clear instead (if inset updates, update this as well)
-                window.baseFont = parseFloat(mutation.target.firstChild.firstChild.firstChild.style.fontSize.replace('px',''));
-                window.current_size = window.baseFont*window.current_multiplier+'px';
-                update_style('font_size');
+            //     //font size changes way more often than on nrk so will take basefont after every clear instead (if inset updates, update this as well)
+            //     window.baseFont = parseFloat(mutation.target.firstChild.firstChild.firstChild.style.fontSize.replace('px',''));
+            //     window.current_size = window.baseFont*window.current_multiplier+'px';
+            //     update_style('font_size');
 
-                if (window.original_text_side == 0){
-                    window.original_subs_placement = parseInt(document.getElementsByClassName("player-timedtext")[0].getBoundingClientRect().x)+ (parseInt(document.getElementsByClassName("player-timedtext")[0].getBoundingClientRect().width)*.025);
-                    var sub_dist = (parseInt(document.getElementsByClassName("player-timedtext")[0].firstChild.getBoundingClientRect().width)+(window.original_subs_placement)+10);
-                    window.my_timedtext_element.style['left']=sub_dist+'px';
+            //     if (window.original_text_side == 0){
+            //         window.original_subs_placement = parseInt(document.getElementsByClassName("player-timedtext")[0].getBoundingClientRect().x)+ (parseInt(document.getElementsByClassName("player-timedtext")[0].getBoundingClientRect().width)*.025);
+            //         var sub_dist = (parseInt(document.getElementsByClassName("player-timedtext")[0].firstChild.getBoundingClientRect().width)+(window.original_subs_placement)+10);
+            //         window.my_timedtext_element.style['left']=sub_dist+'px';
 
-                }
-                else{
-                    window.original_subs_placement = parseInt(my_timedtext_element.getBoundingClientRect().x)+ parseInt(my_timedtext_element.getBoundingClientRect().width);
-                    var sub_dist = (window.original_subs_placement)+10 - parseInt(document.getElementsByClassName("player-timedtext")[0].getBoundingClientRect().x);
-                    document.getElementsByClassName("player-timedtext")[0].firstChild.style['left']=sub_dist+'px';
-                }
+            //     }
+            //     else{
+            //         window.original_subs_placement = parseInt(my_timedtext_element.getBoundingClientRect().x)+ parseInt(my_timedtext_element.getBoundingClientRect().width);
+            //         var sub_dist = (window.original_subs_placement)+10 - parseInt(document.getElementsByClassName("player-timedtext")[0].getBoundingClientRect().x);
+            //         document.getElementsByClassName("player-timedtext")[0].firstChild.style['left']=sub_dist+'px';
+            //     }
 
-            }  
+            // }  
 
         }   
 

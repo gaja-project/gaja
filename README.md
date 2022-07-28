@@ -167,7 +167,7 @@ Lastly in our `createNewSubContainer()` function we have our callback function t
 ## [⭐️ Team](#team)
 
 Meet the Gaja ![image](/icons/icon16.png) Team!
-| ![image](/icons/icon48.png)|![image](/icons/icon48.png)| ![image](/icons/icon48.png)| ![image](https://scontent-sjc3-1.xx.fbcdn.net/v/t1.6435-9/192444196_2075868239228294_8536051389295001423_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=K4Q1auipGPMAX9UL7cj&_nc_ht=scontent-sjc3-1.xx&oh=00_AT8t9uUnJka_oOYKw56r0mMJSFi55ztTzr74tt3rrIObiQ&oe=6308A205)|
+| ![image](/icons/icon48.png)|![image](/icons/icon48.png)| ![image](/icons/icon48.png)| ![image](https://media-exp1.licdn.com/dms/image/C4D03AQGNYP-5COsuZQ/profile-displayphoto-shrink_800_800/0/1612807517282?e=1664409600&v=beta&t=9pJGmLBu8z8sPssiPSCRJcEzhnDMbe6M4pDHVvQH9aA)|
 | :---: | :---: | :---: | :---: |
 | **Jay** | **Yovonne** | **Sophie** | **Jose Salazar Mendez** |
 | *Product Manager* | *Product Designer* | *Developer* | *Developer* |
