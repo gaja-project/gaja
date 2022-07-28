@@ -1,0 +1,172 @@
+:root {
+    --main-background-color: #B8D5D8;
+    --font-color: #2E5984;
+    --on-btn-colour: #29696B;
+    --hovering-bg-color: #BE8B87;
+    --hovering-font-color: #FFFFFF;
+    --fieldset-bg-color: #FFFFFF;
+    --secondary-bg-color: #FC997E1C;
+    --accent-color: #A7605A;
+    --logo-color-1: #FAB536;
+}
+
+html {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    color: hsl(210, 48%, 35%);
+    padding: 15px 0;
+    background-color: #B8D5D8;
+}
+
+form {
+    width: 320px;
+}
+
+fieldset {
+    border: none;
+}
+
+/* styling for dual subtitle fieldset */
+.dualSubs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 4px 20px 0 20px;
+    border-radius: 10px;
+    background-color: var(--fieldset-bg-color);
+    height: 30px;
+    margin: 4px 20px 10px 20px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.dual-on-off-toggle {
+    position: relative;
+}
+
+.dual-on-off-toggle .on-off-dot span {
+    position: absolute;
+    top: 9px;
+    right: 10px;
+    width: 7px;
+    height: 7px;
+    text-align: center;
+    border-radius: 100px;
+    text-align: center;
+    transition: 0.3s ease-in;
+    background-color: var(--font-color);
+    z-index: 10;
+}
+
+input[type=checkbox] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 0.8px solid var(--font-color);
+    border-radius: 40px;
+    width: 40px;
+    height: 20px;
+    background-color: var(--fieldset-bg-color);
+}
+
+input[type=checkbox]::before {
+    content: "off";
+    color: var(--font-color);
+    width: 100%;
+    position: relative;
+    left: 5px;
+    transition: 0.3s;
+    font-size: 0.75rem;
+}
+
+input[type=checkbox]:checked {
+    background-color: var(--accent-color);
+    border: 1px solid var(--logo-color-1);
+}
+
+input[type=checkbox]:checked::before {
+    content: "on";
+    left: 15px;
+    color: var(--hovering-font-color);
+}
+
+input[type=checkbox]:checked + .on-off-dot span {
+    left: 10px;
+    background-color: var(--hovering-font-color);
+}
+
+/* styling for subtitle size fieldset */
+
+#size-label{
+    padding: 0;
+    margin: 0; 
+}
+
+.subtitle-size{
+    /* padding: 0 .5em 0 .5em; */
+    flex-direction: column;
+    border-radius: 10px;
+    background-color: var(--fieldset-bg-color);
+    height: 60px;
+    margin: 4px 20px 10px 20px;
+    padding: 10px 20px 0 20px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.subtitle-input{
+    flex-direction: row;
+    padding-top: 10px
+}
+
+label{
+    margin-top: 3px;
+}
+
+.small-button{
+    border-radius: 99px 0px 0px 99px;
+    border-right: 1px solid var(--accent-color);
+    font-size: small;
+}
+
+.medium-button{
+    font-size: medium;
+}
+
+.large-button{
+    border-radius: 0px 9999px 9999px 0px;
+    border-left: 1px solid var(--accent-color);
+    font-size: large;
+}
+
+.subtitle-input {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+input[type="radio"] {
+    appearance: none;
+    display: none;
+}
+
+.subtitle-input > label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: inherit;
+    text-align: center;
+    overflow: hidden;
+    transition: linear 0.3s;
+    background-color: #fc997e1c;
+    width: 100%;
+    height: 22px;
+}
+
+input[type="radio"]:checked + label{
+    color:black;
+    background-color: var(--hovering-bg-color);
+}
+
+.radio-hover:hover {
+    background-color: var(--hovering-bg-color);
+    color: var(--hovering-font-color);
+}

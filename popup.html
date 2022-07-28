@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,16 +8,53 @@
     <!-- <title>Document</title> -->
 
     <!-- insert link to css file -->
+    <link rel="stylesheet" href="popup.css">
     <!-- insert link to Google fonts or other font family services -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
 </head>
-<body>
-    
 
+<body>
+    <div class="popup">
+        <!-- form for subtitles -->
+        <form id="popup-form" class="container">
+            <!-- dual subtitle toggle button -->
+            <fieldset class="dualSubs">
+                <label for="subtitle">Dual subtitles</label>
+                <div class="dual-on-off-toggle">
+                    <input type="checkbox" name="subtitle" id="subtitle">
+                    <div class="on-off-dot">
+                        <span></span>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset class="subtitle-size">
+                <!--  Legend replaced with label due to css issues -->
+                <p id="size-label">Subtitle Size</p>
+
+                <!-- Can change the the radio to buttons to better match the wireframes -->
+                <div class="subtitle-input">
+                    <input type="radio" name="subSize" value="20" id="small-button" checked>
+                    <label class="small-button radio-hover" for="small-button">Small</label>
+                    
+                    <input type="radio" name="subSize" value="25" id="medium-button" checked>
+                    <label class="medium-button radio-hover" for="medium-button">Medium</label>
+        
+                    <input type="radio" name="subSize" value="30" id="large-button">
+                    <label class="large-button radio-hover" for="large-button">Large</label>
+                </div>
+                
+            </fieldset>
+        </form>
+    </div>
 
 
     <!-- js files -->
     <script src="popup.js"></script>
 
 </body>
+
 </html>
