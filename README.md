@@ -13,11 +13,13 @@ Gaja is a chrome extension that helps you learn a new language just by watching 
 - [Team](#-team)
 ***
 ## 📝 Overview
-Gaja was created by a team of language learners who wanted the ability to enhance the overall language learning experience. Through [Co.lab](https://www.joincolab.io), they created and [pitched](https://pitch.com/v/gaja-fx3hh6) a product that could not only help them, but others as well!
+Gaja was created by a team of language learners who wanted the ability to enhance the overall language learning experience. Through [Co.lab](https://www.joincolab.io), they created and [pitched](https://pitch.com/v/gaja-48ymb2) a product that could not only help them, but others as well!
 
 Gaja is a Chrome extension that enables two different language subtitles to be displayed at the same time. What this means is that you can have one subtitle be your native language, and the second be language you are trying to learn!
 
+
 Our landing page can be found [here](https://mailchi.mp/f9063425d3aa/gaja)
+Our slides to our pitch can be found [here](https://pitch.com/v/gaja-fx3hh6)
 
 ## 🎨 Design
 A link to our Figma product design can be found [here](https://www.figma.com/file/Aieb6PwV3zMtLbCo84cK3E/Gaja---Language-learning?node-id=851%3A2010).
@@ -87,7 +89,7 @@ To help users remember to enable their dual subtitles. Practice makes perfect!
 That's it! 🎉 Easy right? You can customize your experience with other features from the Gaja dropdown!
 Happy learning!🍿🎓
 
-## 🔨 Development {#development}
+## 🔨 Development
 
 Gaja's uses Html, CSS, and Javascript to get the job done 💪.
 
@@ -155,7 +157,7 @@ Setting the container attribute to no is important because it allows one subtitl
 ```
 Lastly in our `createNewSubContainer()` function we have our callback function that allows us to manage our container to any updates it observers from netflix's subtitle container.
 
-## [⭐️ Team](#team)
+## ⭐️ Team
 
 Meet the Gaja ![image](/icons/icon16.png) Team!
 | ![image](/icons/icon48.png)|![image](/icons/icon48.png)| ![image](/icons/icon48.png)| ![image](https://media-exp1.licdn.com/dms/image/C4D03AQGNYP-5COsuZQ/profile-displayphoto-shrink_800_800/0/1612807517282?e=1664409600&v=beta&t=9pJGmLBu8z8sPssiPSCRJcEzhnDMbe6M4pDHVvQH9aA)|
