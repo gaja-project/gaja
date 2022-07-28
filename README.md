@@ -4,13 +4,13 @@ Gaja is a chrome extension that helps you learn a new language just by watching 
 
 ***
 ## 📖 Table of Contents
-- [Overview](#overview)
-- [Design](#design)
-- [Screenshots](#screenshots)
-- [Features](#features)
-- [How to use](#how)
-- [Development](#development)
-- [Team](#team)
+- [Overview](#-overview)
+- [Design](#-design)
+- [Screenshots](#-screenshots)
+- [Features](#-features)
+- [How to use](#-how-to-use)
+- [Development](#-development)
+- [Team](#-team)
 ***
 ## 📝 Overview
 Gaja was created by a team of language learners who wanted the ability to enhance the overall language learning experience. Through [Co.lab](https://www.joincolab.io), they created and [pitched](https://pitch.com/v/gaja-fx3hh6) a product that could not only help them, but others as well!
@@ -23,7 +23,7 @@ Our landing page can be found [here](https://mailchi.mp/f9063425d3aa/gaja)
 A link to our Figma product design can be found [here](https://www.figma.com/file/Aieb6PwV3zMtLbCo84cK3E/Gaja---Language-learning?node-id=851%3A2010).
 Some features that have not yet been implemented can also be found on the Figma as well!
 
-## 📺 Screenshots {#screenshots}
+## 📺 Screenshots
 A pitch of our product can be found [here]( https://pitch.com/v/gaja-48ymb2).
 
 Slides [here](https://pitch.com/v/gaja-fx3hh6).
@@ -34,10 +34,10 @@ Our current deployment of Gaja looks like this.
 ## ⚙️ Features
 The Gaja team is proud to present you these current features!
 Current features include: 
-- [Dual subtitles](#dual)
-- [Subtitle resizing](#resize)
+- [Dual subtitles](#dual-subtitles)
+- [Subtitle resizing](#subtitle-resizing)
 
-#### Dual Subtitles {#dual}
+#### Dual Subtitles 
 Dual subtitles allows a user to see their native language and the language they are trying to learn.
 
 #### Subtitle resizing
@@ -46,43 +46,43 @@ Subtitle resizing allows users to resize the subtitles shown in their native lan
 ### Other
 Gaja hopes to further develop and implement other features that may help and enable users to improve their experience.
 Theses inlcude:
-- [Subtitle definitions](#sub)
-- [Word saving](#word)
-- [Flash Cards](#flash) 
-- [Notifications](#notif)
+- [Subtitle definitions](#subtitle-definitions)
+- [Word saving](#word-saving)
+- [Flash Cards](#flash-cards) 
+- [Notifications](#notifications)
 
-##### Subtitle Definitions {#sub}
+##### Subtitle Definitions
 Subtitle definitions can be used to help users understand a word they are not fimiliar with.
 
-##### Word Saving {#word}
+##### Word Saving
 This can help users go back to that word that they just can't seem to remember. A key to learning is remembering what a word means!
 
-##### Flash Cards {#flash}
-This will allow users to quiz themselves out of the many words they have saved using the [word saving](#word) feature.
+##### Flash Cards
+This will allow users to quiz themselves out of the many words they have saved using the [word saving](#word-saving) feature.
 
-##### Notifications {#notif}
+##### Notifications
 To help users remember to enable their dual subtitles. Practice makes perfect!
 
-> The designs for some of these features and more can found in the Figma linked in the [design](#design) section.
+> The designs for some of these features and more can found in the Figma linked in the [design](#-design) section.
 
 <!-- ### Features in development -->
 
 
-## 📙 How to use {#how}
+## 📙 How to use
 1. To get started, install the extension from the Chrome Web Store 📥.
-(Add gif here)
+<!-- (Add gif here) -->
  
 2. Once you have Gaja installed should be able to see the Gaja icon ![logo](/icons/icon16.png) on your extension tab. You can pin it to your tab bar by clicking the pin 📌 button for easy access. 
-(Add gif here)
+<!-- (Add gif here) -->
 
 3. Log on to Netflix and select your favorite show or movie 🎥. Go to the subtitle menu and select the language you are trying to learn.
-(Add gif here)
+<!-- (Add gif here) -->
 
 4. After you have your subtitles enabled click on the Gaja icon ![logo](/icons/icon16.png). From the dropdown menu toggle the on or off ![logo](/icons/onButton2.png) button under dual subtitle. 
-(Add gif here)
+<!-- (Add gif here) -->
 
 5. You should now be able to see two seperate subtitles. Right click 🖱 the new subtitle container and from the menu select translate to English.
-(Add gif here)
+
 
 That's it! 🎉 Easy right? You can customize your experience with other features from the Gaja dropdown!
 Happy learning!🍿🎓

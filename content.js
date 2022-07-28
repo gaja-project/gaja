@@ -1,22 +1,21 @@
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     
     // Window.on_off will be true or false based on the update_on_off value from user
-    // if (request.message === "update_on_off" || request.message === "update_font_size") {
     if (request.message === "update_on_off") {
         
         // Calls functions to create a dual subtitle container
         window.on_off = request.value;
         if (window.on_off) {
             createNewSubContainer();
-            console.log("Called Sub Container")
+            // console.log("Called Sub Container")
         } else {
             removeSubContainer()
-            console.log("Removed Sub container");
+            // console.log("Removed Sub container");
         }
     }
     
-    if (request.message === "update_font_size") {
-        // console.log(request.value);
+    // Get value to check if any changes made to font size buttons
+    if (request.message === "update_font_size" && window.on_off) {
         window.font_size = request.value;
 
         fontSizeUpdate(window.font_size);
@@ -36,7 +35,7 @@ function removeSubContainer(){
     }
 }
 
-// Get Netflix's container returns it for refrence 
+// Get Netflix's container returns it for reference 
 function getNetflixContainer(){
     // Get Netflix's container
     const netflixEl = "player-timedtext";
@@ -59,7 +58,7 @@ function createNewSubContainer(){
     const divy = document.createElement('div');
     divy.className = "my-timed-text-container";
 
-    // Append our new container to the netflix's video container
+    // Append our new container to the Netflix's video container
     videoContainer.appendChild(divy);
 
     // Create a p element to hold our subtitle data
@@ -74,8 +73,6 @@ function createNewSubContainer(){
     window.config = { attributes: true, childList: true, subtree: true }; //attributeFilter:[ "style"]
     window.old_text = "";
 
-    // Inset changes with window size
-    // window.old_inset = timedtext.style.inset;
     // This callback function operates by observing node changes
 
     const callback = function (mutationsList, observer) {
@@ -100,8 +97,8 @@ function createNewSubContainer(){
                         window.old_text = mutation.target.innerText;
                         window.cleared = 1;
 
-                        console.log("Sub changed detected");
-                        console.log(mutation.target.innerText);
+                        // console.log("Sub changed detected");
+                        // console.log(mutation.target.innerText);
                         
                         // Set the subtitle data to our subtitle container
                         mySubs.innerHTML = mutation.target.innerText;
@@ -118,29 +115,6 @@ function createNewSubContainer(){
                 }
 
             } 
-            // else if (mutation.target.style.inset != window.old_inset){ //For adjusting subtitle style when window is resized
-                
-            //     //Netflix constantly refreshes the text so I have to constantly reapply them
-            //     const caption_row = document.getElementsByClassName("player-timedtext")[0];                
-
-            //     //font size changes way more often than on nrk so will take basefont after every clear instead (if inset updates, update this as well)
-            //     window.baseFont = parseFloat(mutation.target.firstChild.firstChild.firstChild.style.fontSize.replace('px',''));
-            //     window.current_size = window.baseFont*window.current_multiplier+'px';
-            //     update_style('font_size');
-
-            //     if (window.original_text_side == 0){
-            //         window.original_subs_placement = parseInt(document.getElementsByClassName("player-timedtext")[0].getBoundingClientRect().x)+ (parseInt(document.getElementsByClassName("player-timedtext")[0].getBoundingClientRect().width)*.025);
-            //         var sub_dist = (parseInt(document.getElementsByClassName("player-timedtext")[0].firstChild.getBoundingClientRect().width)+(window.original_subs_placement)+10);
-            //         window.my_timedtext_element.style['left']=sub_dist+'px';
-
-            //     }
-            //     else{
-            //         window.original_subs_placement = parseInt(my_timedtext_element.getBoundingClientRect().x)+ parseInt(my_timedtext_element.getBoundingClientRect().width);
-            //         var sub_dist = (window.original_subs_placement)+10 - parseInt(document.getElementsByClassName("player-timedtext")[0].getBoundingClientRect().x);
-            //         document.getElementsByClassName("player-timedtext")[0].firstChild.style['left']=sub_dist+'px';
-            //     }
-
-            // }  
 
         }   
 
@@ -163,20 +137,9 @@ function stylingContainer(newDiv, pTag, netflixTimedtext){
     const containerStyle = newDiv.style
     const pStyle = pTag.style
 
-    // Gets original sub placement attributes and then using them to position our subtitle container element (divy)
-    // const boundingContainer = document.querySelector('.player-timedtext-text-container');
-
-    // window.subs_placement_height = parseInt(boundingContainer.getBoundingClientRect().height);
-    // window.subs_placement_y = parseInt(boundingContainer.getBoundingClientRect().y);
-    // window.subs_placement_x = parseInt(boundingContainer.getBoundingClientRect().x);
-    // window.subs_placement_bottom = parseInt(boundingContainer.getBoundingClientRect().bottom); 
-
-    // Changing default styling of p tag
-    // P tag comes with margins, this removes those margins
+    // Changing default styling of p tag, Note: P tag comes with margins, this removes those margins
     pStyle.margin = "0";
     pStyle.fontSize = "25px";
-
-    // pStyle.border = "1px solid yellow";
 
     // Style our p tag
     pStyle.position = "relative";
@@ -196,20 +159,10 @@ function stylingContainer(newDiv, pTag, netflixTimedtext){
 
     // Style our container using the old container properties
     containerStyle.height = original_subs_placement_height + "px";
-    // containerStyle.height = "200px";
     containerStyle.width = original_subs_placement_width + "px";
-    // containerStyle.width = "100vw";
     containerStyle.top = original_subs_placement_y + "px";
     containerStyle.left = original_subs_placement_x + "px";
     containerStyle.bottom = original_subs_placement_bottom + "px";
-
-    // // containerStyle.height = "80vh";
-    // // containerStyle.width =  "100vw";
-    // containerStyle.height = "100px"
-    // // containerStyle.width = "100vw";
-    // containerStyle.top = original_subs_placement_y + "px";
-    // // containerStyle.left = original_subs_placement_x + "px";
-    // containerStyle.bottom = original_subs_placement_bottom + "px";
 
     // Display block is important to make our container visible
     containerStyle.display = "block"
@@ -219,11 +172,11 @@ function stylingContainer(newDiv, pTag, netflixTimedtext){
 
 }
 
+// Function changes our p tag font size
 const fontSizeUpdate = function(size) {
     const subtitles = document.querySelector(".my-timed-text-container");
 
     const mySubs = subtitles.querySelector('p');
 
-    // console.log(mySubs);
     mySubs.style.fontSize = size + "px";
 }
