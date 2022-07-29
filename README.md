@@ -17,9 +17,8 @@ Gaja was created by a team of language learners who wanted the ability to enhanc
 
 Gaja is a Chrome extension that enables two different language subtitles to be displayed at the same time. What this means is that you can have one subtitle be your native language, and the second be language you are trying to learn!
 
-
-Our landing page can be found [here](https://mailchi.mp/f9063425d3aa/gaja)
-Our slides to our pitch can be found [here](https://pitch.com/v/gaja-fx3hh6)
+Our landing page can be found [here](https://mailchi.mp/f9063425d3aa/gaja).
+Our slides to our pitch can be found [here](https://pitch.com/v/gaja-fx3hh6).
 
 ## 🎨 Design
 A link to our Figma product design can be found [here](https://www.figma.com/file/Aieb6PwV3zMtLbCo84cK3E/Gaja---Language-learning?node-id=851%3A2010).
@@ -156,6 +155,20 @@ Setting the container attribute to no is important because it allows one subtitl
     }
 ```
 Lastly in our `createNewSubContainer()` function we have our callback function that allows us to manage our container to any updates it observers from netflix's subtitle container.
+
+```js script
+    if (mutation.target.innerText !== window.old_text) {
+        // mutation.target.innerText gives us access to the subtitles
+        // set old text as current text for next observer change
+        window.old_text = mutation.target.innerText;
+                        
+        // Set the subtitle data to our subtitle container
+        mySubs.innerHTML = mutation.target.innerText;
+        }
+```
+
+Just like that we are able to get our subtitle data and display it on the screen.
+
 
 ## ⭐️ Team
 
