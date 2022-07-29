@@ -158,7 +158,7 @@ function stylingContainer(newDiv, pTag, netflixTimedtext){
 
 
     // Style our container using the old container properties
-    containerStyle.height = original_subs_placement_height + "px";
+    containerStyle.height = "100px";
     containerStyle.width = original_subs_placement_width + "px";
     containerStyle.top = original_subs_placement_y + "px";
     containerStyle.left = original_subs_placement_x + "px";
