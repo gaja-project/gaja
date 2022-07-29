@@ -74,18 +74,18 @@ To help users remember to enable their dual subtitles. Practice makes perfect!
 <!-- (Add gif here) -->
  
 2. Once you have Gaja installed should be able to see the Gaja icon ![logo](/icons/icon16.png) on your extension tab. You can pin it to your tab bar by clicking the pin 📌 button for easy access. 
-![Imgur](https://i.imgur.com/vkQU4kS.gif)
+![pin](https://i.imgur.com/vkQU4kS.gif)
 
 3. Log on to Netflix and select your favorite show or movie 🎥. Go to the subtitle menu and select the language you are trying to learn.
 <!-- (Add gif here) -->
-![Alt Text]()
+![turn on subtitles](https://i.imgur.com/vdPBsrK.gif)
 
 4. After you have your subtitles enabled click on the Gaja icon ![logo](/icons/icon16.png). From the dropdown menu toggle the on or off ![logo](/icons/onButton2.png) button under dual subtitle. 
 <!-- (Add gif here) -->
-![Alt Text]()
+![turn on dual subtitles](https://i.imgur.com/14Oavzn.gif)
 
 5. You should now be able to see two seperate subtitles. Right click 🖱 the new subtitle container and from the menu select translate to English.
-![Alt Text]()
+![translate](https://i.imgur.com/KHtbFGm.gif)
 
 
 That's it! 🎉 Easy right? You can customize your experience with other features from the Gaja dropdown!
