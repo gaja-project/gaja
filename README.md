@@ -74,7 +74,7 @@ To help users remember to enable their dual subtitles. Practice makes perfect!
 <!-- (Add gif here) -->
  
 2. Once you have Gaja installed should be able to see the Gaja icon ![logo](/icons/icon16.png) on your extension tab. You can pin it to your tab bar by clicking the pin 📌 button for easy access. 
-![Imgur](https://i.imgur.com/vkQU4kS.gifv)
+![Imgur](https://i.imgur.com/vkQU4kS.gif)
 
 3. Log on to Netflix and select your favorite show or movie 🎥. Go to the subtitle menu and select the language you are trying to learn.
 <!-- (Add gif here) -->
