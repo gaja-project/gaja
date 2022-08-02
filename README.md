@@ -1,6 +1,6 @@
 # Gaja ![logo](/icons/icon16.png)
 
-Gaja is a chrome extension that helps you learn a new language just by watching your favorite shows!
+Gaja is a Chrome extension that helps you learn a new language just by watching your favorite shows!
 
 ***
 ## 📖 Table of Contents
@@ -108,11 +108,11 @@ to check for any user input on the form and set the default variables for `conte
 ```js script
     chrome.storage.sync.set()
 ```
-which sets variable into chrome local storage. These vairables will then speak with our `content.js`.
+which sets variable into Chrome local storage. These variables will then speak with our `content.js`.
 ***
 
 Our `content.js` holds our meat and potatoes. In here we have our dual subtitle and font sizing functionality. 
-To start, our file holds a listener to check any user changes which should have been toggled by `background.js`. Once a user activates the dual subtitles, our first mission is to create a new container for these subtitles in our
+To start, our file holds a listener to check any user changes which is tracked in the `background.js`. Once a user activates the dual subtitles, the extension will create a new container for these subtitles in our
 ```js script
     // Creates a subtitle container
     function createNewSubContainer(){
@@ -132,7 +132,7 @@ To start, our file holds a listener to check any user changes which should have 
         window.observer.observe(timedtext, window.config);
     }
 ```
-We also need netflix's container for reference which we get using 
+We also need Netflix's container for reference which we get using 
 ```js script
     function getNetflixContainer(){
         const netflixEl = "player-timedtext";
@@ -143,7 +143,7 @@ We also need netflix's container for reference which we get using
         return timedtext
     }
 ```
-Setting the container attribute to no is important because it allows one subtitle container to remain the same while the other translates. Which leads us to the other function we call in our `createNewSubContainer()` function which is the `stylingContainer()` function. In here we style our new container using the netflix container as reference and we also style our p tag which exists in our new container.
+Setting the container's translation attribute to 'no' is important because it allows one subtitle container to remain the same while the other translates. Which leads us to the callback function we call in our `createNewSubContainer()` function which is the `stylingContainer()` function. In here, we style our new container using the Netflix container as reference and we also style our p tag which exists in our new container.
 ```js script
     // Function to style our container, recieves our new div container, our p tag, and the netflix sub container
     function stylingContainer(newDiv, pTag, netflixTimedtext){
@@ -154,6 +154,24 @@ Setting the container attribute to no is important because it allows one subtitl
     }
 ```
 Lastly in our `createNewSubContainer()` function we have our callback function that allows us to manage our container to any updates it observers from netflix's subtitle container.
+***
+
+Another feature of our extension is for users to be able to change the font size of the subtitles displayed in their native language.  
+
+To create this feature, we check to see if the user has interacted with the font-size radio buttons that live on the popup.js.  If the dual subtitles are set to 'on' and the user has made a change to a different font size, the request value will be saved to the window object.  From there, the 'fontSizeUpdate' function will be called.
+
+```js content
+const fontSizeUpdate = function(size) {
+    const subtitles = document.querySelector(".my-timed-text-container");
+
+    const mySubs = subtitles.querySelector('p');
+
+    mySubs.style.fontSize = size + "px";
+}
+```
+
+
+
 
 ## [⭐️ Team](#team)
 
